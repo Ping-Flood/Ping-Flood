@@ -15,7 +15,14 @@ export class ApiService {
 
   login(user:User):Observable<any>{
     return this.http.post(`${this.baseUrl}/login`, user).pipe(map(res => {
-      return (<any>res).masked_databases as any;
+      return (<any>res) as boolean;
     }));
   }
+
+  signup(user:User):Observable<any>{
+    return this.http.post(`${this.baseUrl}/create`, user).pipe(map(res => {
+      return (<any>res) as boolean;
+    }));
+  }
+
 }

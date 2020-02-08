@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
+  prenom:string;
+  nom:string;
+  address:string;
+  city:string;
+  secteur:any;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  createUser(){
+
   }
 
 }

@@ -1,1 +1,40 @@
-<p>sign-up works!</p>
+<section class="center" style="margin-top: 20%;">
+
+    <h1>Ping Flood</h1>
+  
+</section>
+
+<div class="center margin-center width50">
+    <form>
+        
+        <label for="">Prenom</label>
+        <div>    
+            <input type="text" placeholder="Nom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+        
+        <label for="">Nom</label>
+        <div>
+            <input type="text" placeholder="Mot de passe" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+
+        <label for="">Addresse</label>
+        <div>
+            <input type="text" placeholder="Mot de passe" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+
+        <label for="">Ville</label>
+        <div>
+            <input type="text" placeholder="Mot de passe" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+
+        <label for="">Secteur</label>
+        <div>
+            <input type="text" placeholder="Mot de passe" [(ngModel)]="secteur" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+        
+        <br>
+        <button class="btn btn-primary input-font" (click)="createUser()">Creer</button>
+        <a href="/login" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Deja un Compte</a>
+
+    </form>
+</div>
