@@ -9,17 +9,18 @@ namespace MyFirtWebApi.Context
     /// </summary>
     public class UserContext : DbContext
     {
-        SqlConnection cnn;
+        public DbSet<User> Users { get; set; }
 
-        string connetionString = "Data Source=192.168.250.65;Initial Catalog=pingflood;User ID=sa;Password=shawi123@";
-
-        public UserContext()
-        {
-        }
+        private string connetionString = "Data Source=192.168.250.65;Initial Catalog=pingflood;User ID=sa;Password=shawi123@";
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connetionString);
         }
+    }
+
+    public class User
+    {
+        public int Id { get; set; }
     }
 }
