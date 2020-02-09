@@ -70,7 +70,7 @@
         
         <br>
         <button class="btn btn-primary input-font" (click)="createUser()" [disabled]="isDisable()">Créer</button>
-        <a href="/login" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Déja un compte</a>
+        <a (click)="goToLogin()" class="input-font" style="margin-left: 5px;">Déja un compte</a>
 
     </form>
 </div>
