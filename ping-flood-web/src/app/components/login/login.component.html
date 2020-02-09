@@ -1,1 +1,27 @@
-<p>login works!</p>
+<section class="center" style="margin-top: 20%;">
+
+    <h1>Ping Flood</h1>
+  
+</section>
+
+<div class="center margin-center width50">
+    <form>
+
+        <span *ngIf="wrongLogin" style="color: red;">*Mauvais nom d'utilisateur/mot de passe</span>
+        <br>
+        <label for="">Nom d'utilisateur</label>
+        <div>    
+            <input style="width: 100%;" type="text" placeholder="Nom" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+        
+        <label for="">Mot de passe</label>
+        <div>
+            <input style="width: 100%;" type="password" placeholder="Mot de passe" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+        
+        <br>
+        <button class="btn btn-primary input-font" (click)="connectUser()">Connecter</button>
+        <a href="/signup" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Créer un Compte</a>
+
+    </form>
+</div>

@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-ui-switch/ui-switch.component.scss';
+
+.center{
+    text-align: center;
+}
+
+label{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.input-font{
+    font-size: 25px !important;
+}
+
+form{
+    align-content: normal;
+    border: 2px solid cadetblue;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.margin-center{
+    margin: 15px auto;
+}
+
+.width50{
+    width:50%;
+}
+
+@media only screen and (max-width: 600px){
+    .width50{
+        width: 100%;
+    }
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
