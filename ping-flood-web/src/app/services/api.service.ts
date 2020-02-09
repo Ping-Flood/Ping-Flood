@@ -58,7 +58,7 @@ export class ApiService {
     return this.user;
   }
 
-  getListDemands(isSeeker: boolean, isVolunteer: boolean):Observable<Demand[]>{
+  getListDemands(isSeeker: boolean=false, isVolunteer: boolean=false):Observable<Demand[]>{
     return this.http.get(`${this.baseUrl}/demand/GetDemandList?isSeeker=${isSeeker}&isVolonteer=${isVolunteer}`, {headers:this.headers}).pipe(map(res => {
       return (<any>res) as Demand[];
     }));

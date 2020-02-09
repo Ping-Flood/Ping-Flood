@@ -14,21 +14,17 @@ export class MainPageComponent implements OnInit {
 
   faPlus = faPlus;
   faClose = faWindowClose;
-<<<<<<< HEAD
-=======
   faHamburger=faHamburger;
-  users = users;
->>>>>>> get list demands
+  // users = users;
   isSeekerMainPage = true;
   title = this.isSeekerMainPage ? "Offres" : "Demandes";
   user:User;
   demands:Demand[];
 
   isMenuOpen=false;
-
-  demands:Demand[] = [];
   filtreTypeDemade:number=0;
   demandsFiltered:Demand[] = [];
+  
 
 
   constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal) {
@@ -42,7 +38,7 @@ export class MainPageComponent implements OnInit {
         this.user = JSON.parse(document.cookie.split(';')[document.cookie.split(';').length-1]) as User;
         this.getListDemands();
       } catch (error) {
-        this.router.navigateByUrl('login')
+        this.router.navigateByUrl('login');
       }
     }else{
       this.getListDemands();
@@ -50,8 +46,9 @@ export class MainPageComponent implements OnInit {
   }
 
   getListDemands(){
-    this.api.getListDemands(this.user.isSeeker, this.user.isVolunteer).subscribe(res=>{
+    this.api.getListDemands(this.typeList==2, this.typeList==1).subscribe(res=>{
       this.demands = res as any;
+      this.changeFiltre();
     })
   }
 
@@ -92,7 +89,7 @@ export class MainPageComponent implements OnInit {
   typeList:number=1;
   changeType(typeList:number){
     this.typeList = typeList;
-    this.getListDemand();
+    this.getListDemands();
   }
 
   goToDetail(content, demand:Demand){

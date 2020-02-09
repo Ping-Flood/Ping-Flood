@@ -21,7 +21,7 @@
   <!-- <h2>{{ title }}</h2> -->
 
 
-  <a *ngFor="let demand of demands" (click)="goToDetail(demand)"
+  <!-- <a *ngFor="let demand of demands" (click)="goToDetail(demand)"
     class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{ getUserName(demand) }}</h5>
@@ -29,12 +29,11 @@
     </div>
     <p class="mb-1">Catégorie: {{ getTypeDescription(demand.category) }}</p>
     <small *ngIf="demand.seeker">{{ demand.seeker.address }}</small>
-  </a>
-  
+  </a> -->
+
   <div class="row">
     <button class="btn btn-danger col-sm-6 input-font" style="width: 50%;" (click)="changeType(2)" [disabled]="typeList==2">Sinistre(es)</button>
     <button class="btn btn-success col-sm-6 input-font" style="width: 50%;" (click)="changeType(1)" [disabled]="typeList==1">Volontaire(s)</button>
-    
   </div>
 
   <div class="row">
