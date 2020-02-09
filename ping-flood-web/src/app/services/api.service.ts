@@ -19,17 +19,24 @@ export class ApiService {
     this.headers = this.headers.append('X-Requested-With', 'application/json');
   }
 
-  login(user:User):Observable<any>{
+
+  login(user:User):Observable<User>{
     return this.http.post(`${this.baseUrl}/user/login`, user, {headers:this.headers}).pipe(map(res => {
       this.user = res as User;
       return (<any>res) as User;
     }));
   }
 
-  signup(user:User):Observable<any>{
+  signup(user:User):Observable<User>{
     return this.http.post(`${this.baseUrl}/user/create`, user, {headers:this.headers}).pipe(map(res => {
       this.user = res as User;
-      return (<any>res) as boolean;
+      return (<any>res) as User;
+    }));
+  }
+
+  getListUser():Observable<User[]>{
+    return this.http.get(`${this.baseUrl}/users`, {headers:this.headers}).pipe(map(res => {
+      return (<any>res) as User[];
     }));
   }
 
