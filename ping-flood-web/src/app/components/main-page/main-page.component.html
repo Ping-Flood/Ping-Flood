@@ -1,5 +1,5 @@
 
-<div class="container" style="position: absolute;top: 5px;font-size: 30px;z-index: 9999;background-color: dodgerblue;color: white;">
+<div class="container" style="position: absolute;top: 5px;font-size: 30px;background-color: dodgerblue;color: white;" [ngStyle]="{'z-index': isMenuOpen?9999:null}">
   <fa-icon *ngIf="!isMenuOpen" class="clickable" [icon]="faHamburger" (click)="openMenu()"></fa-icon>
   <div *ngIf="isMenuOpen" id="menuHamburger" tabindex="-1" (blur)="quitMenu()">
 

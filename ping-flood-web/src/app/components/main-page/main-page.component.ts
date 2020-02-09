@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { User, Demand } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,7 +8,8 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.scss']
+  styleUrls: ['./main-page.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MainPageComponent implements OnInit {
 
@@ -96,6 +97,7 @@ export class MainPageComponent implements OnInit {
     this.demandDetail = demand;
     this.modalCreateDemand = this.modalService.open(content,{
       size: 'lg',
+      windowClass: 'modal-custom-lg',
       backdrop: 'static',
       centered: true
     })
@@ -111,6 +113,7 @@ export class MainPageComponent implements OnInit {
     this.modalCreateDemand = this.modalService.open(content,{
       size: 'lg',
       backdrop: 'static',
+      windowClass: 'modal-custom-lg',
       centered:true
     });
     this.typeDemand = 1;
