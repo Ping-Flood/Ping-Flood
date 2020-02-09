@@ -70,11 +70,14 @@ namespace MyFirtWebApi.Context
                     .Where(x => x.Id == matche.DemandsId)
                     .Select(x => new Demands
                     {
+                        Id = x.Id,
                         VolunteerUsers = x.VolunteerUsers,
                         SeekerUsers = x.SeekerUsers
                     }).First();
 
-                HandleSecureDemand(demand);
+                matche.DemandStatusId = (int)DemandStatus.Approved;
+
+                //matche.Demands = demand;
 
                 //todo support confirmation required
                 //if (demand.IsConfirmationRequired)
@@ -96,6 +99,9 @@ namespace MyFirtWebApi.Context
                 EntityEntry<Matches> entity = this.Matches.Add(matche);
 
                 this.SaveChanges();
+
+                HandleSecureDemand(demand);
+
 
                 Matches result = entity.Entity;
 
@@ -136,7 +142,15 @@ namespace MyFirtWebApi.Context
 
             string phoneNumber = demand.SeekerUsers.Phone;
 
-            SMSHelper.SendSMS($"+1{phoneNumber}", message);
+            try
+            {
+
+                SMSHelper.SendSMS($"+1{phoneNumber}", message);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
