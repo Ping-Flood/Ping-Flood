@@ -1,4 +1,4 @@
-<section class="center" style="margin-top: 20%;">
+<section class="center" style="margin-top: 10%;">
 
     <h1>Ping Flood</h1>
   
@@ -9,31 +9,46 @@
         
         <label for="">Prenom</label>
         <div>    
-            <input type="text" placeholder="Nom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" class="input-font">
+            <input type="text" placeholder="Prenom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
         
         <label for="">Nom</label>
         <div>
-            <input type="text" placeholder="Mot de passe" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" class="input-font">
+            <input type="text" placeholder="Nom" [(ngModel)]="nom" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
-        <label for="">Addresse</label>
+        <label for="">Courriel</label>
         <div>
-            <input type="text" placeholder="Mot de passe" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" class="input-font">
+            <input type="email" placeholder="Courriel" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+
+        <label for="">Mot de passe</label>
+        <div [ngStyle]="stylePassword()">
+            <input type="password" placeholder="Mot de passe" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+
+        <label for="">Confirmer Mot de passe</label>
+        <div [ngStyle]="stylePassword()">
+            <input type="password" placeholder="Mot de passe" [(ngModel)]="passwordConfirm" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+
+        <label for="">Adresse</label>
+        <div>
+            <input type="text" placeholder="Adresse" [(ngModel)]="address" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
         <label for="">Ville</label>
         <div>
-            <input type="text" placeholder="Mot de passe" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" class="input-font">
+            <input type="text" placeholder="Ville" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
         <label for="">Secteur</label>
         <div>
-            <input type="text" placeholder="Mot de passe" [(ngModel)]="secteur" [ngModelOptions]="{standalone: true}" class="input-font">
+            <input type="text" placeholder="Secteur" [(ngModel)]="secteur" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
         
         <br>
-        <button class="btn btn-primary input-font" (click)="createUser()">Creer</button>
+        <button class="btn btn-primary input-font" (click)="createUser()" [disabled]="isDisable()">Creer</button>
         <a href="/login" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Deja un Compte</a>
 
     </form>

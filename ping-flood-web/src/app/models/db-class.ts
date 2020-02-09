@@ -1,8 +1,12 @@
 export class User {
-    id:string;
-    name:string;
+    id?:number;
+    firstname:string;
+    lastname:string;
     email:string;
     password:string;
+    address:string;
+    city:string;
+    secteurTypeId:number;
     offers?:Offer[];
     demands?:Demand[];
 }

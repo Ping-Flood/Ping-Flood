@@ -8,7 +8,7 @@
     <form>
 
         <span *ngIf="wrongLogin" style="color: red;">*Mauvais nom d'utilisateur/mot de passe</span>
-        
+        <br>
         <label for="">Nom d'utilisateur</label>
         <div>    
             <input type="text" placeholder="Nom" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" class="input-font">

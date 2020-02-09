@@ -21,11 +21,13 @@ export class LoginComponent implements OnInit {
 
   connectUser(){
     let user = new User();
-    user.name = this.username;
+    user.email = this.username;
     user.password = this.password;
     this.api.login(user).subscribe(res=>{
+      console.log(res);
       if(res){
         this.wrongLogin = false;
+        window.location.href = '/main'
       }else{
         this.wrongLogin = true;
       }
