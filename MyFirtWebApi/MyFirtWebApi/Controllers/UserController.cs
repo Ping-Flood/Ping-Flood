@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MyFirtWebApi.Context;
 using MyFirtWebApi.Models;
@@ -7,6 +8,7 @@ namespace MyFirtWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("_myAllowSpecificOrigins")]
     public class UserController : ControllerBase
     {
         /// <summary>
@@ -27,6 +29,7 @@ namespace MyFirtWebApi.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost("Create")]
+        [EnableCors("_myAllowSpecificOrigins")]
         public User Create(User user)
         {
             using UserContext context = new UserContext();

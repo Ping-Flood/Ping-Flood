@@ -55,7 +55,7 @@ namespace MyFirtWebApi.Context
             {
                 this.sqlConnection.Open();
 
-                User result = this.Users.Where(x => x.Id == id).FirstOrDefault();
+                User result = null;//= this.Users.Where(x => x.Id == id).FirstOrDefault();
 
                 this.sqlConnection.Close();
 
@@ -79,6 +79,8 @@ namespace MyFirtWebApi.Context
                 this.sqlConnection.Open();
 
                 EntityEntry<User> entity = this.Users.Add(user);
+
+                this.SaveChanges();
 
                 User result = entity.Entity;
 
