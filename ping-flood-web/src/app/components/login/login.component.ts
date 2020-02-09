@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private cookieService:CookieService) { }
 
   ngOnInit() {
-    console.log(document.cookie)
+    // console.log(document.cookie)
   }
 
   connectUser(){
@@ -35,6 +35,11 @@ export class LoginComponent implements OnInit {
         this.wrongLogin = true;
       }
     })
+  }
+
+
+  goToSignUp(){
+    this.router.navigateByUrl('signup');
   }
 
 }
