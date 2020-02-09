@@ -66,20 +66,27 @@ namespace MyFirtWebApi.Context
             {
                 this.sqlConnection.Open();
 
-                Demands demand = this.Demands.Where(x => x.Id == matche.DemandsId).First();
+                Demands demand = this.Demands
+                    .Where(x => x.Id == matche.DemandsId)
+                    .Select(x => new Demands
+                    {
+                        VolunteerUsers = x.VolunteerUsers,
+                        SeekerUsers = x.SeekerUsers
+                    }).First();
 
-                demand.IsConfirmationRequired = false;
+                HandleSecureDemand(demand);
 
-                if (demand.IsConfirmationRequired)
-                {
-                    matche.DemandStatusId = (int)DemandStatus.WaitingSecure;
-                    HandleSecureDemand(demand);
-                }
-                else
-                {
-                    matche.DemandStatusId = (int)DemandStatus.Approved;
-                    matche.Demands = demand;
-                }
+                //todo support confirmation required
+                //if (demand.IsConfirmationRequired)
+                //{
+                //    matche.DemandStatusId = (int)DemandStatus.WaitingSecure;
+                //    HandleSecureDemand(demand);
+                //}
+                //else
+                //{
+                //    matche.DemandStatusId = (int)DemandStatus.Approved;
+                //    matche.Demands = demand;
+                //} 
 
                 if (matche.Date == default)
                 {
@@ -108,12 +115,11 @@ namespace MyFirtWebApi.Context
         /// <param name="demand"></param>
         private static void HandleSecureDemand(Demands demand)
         {
-            string message = $"User.FirstName & User.LastName Catégorie: Demand.DemandType User." +
-                $"Ville Voici le lien afin de confirmer votre participation LINK Merci de participer au soutien collectif via Ping-Flood";
+            string message = $"Vos informations de contact ont été partagées avec le bénévole {demand.VolunteerUsers.Firstname}:\n Tel: {demand.VolunteerUsers.Phone}.";
 
             string phoneNumber = demand.SeekerUsers.Phone;
 
-            SMSHelper.SendSMS(phoneNumber, $"+1{message}");
+            SMSHelper.SendSMS($"+1{phoneNumber}", message);
         }
     }
 }
