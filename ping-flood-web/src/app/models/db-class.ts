@@ -22,7 +22,6 @@ export class Match{
     volunteerUsersId:number;
     demandStatusId:number;
     date:Date;
-    demand:Demand;
 }
 
 export class Demand{
@@ -33,5 +32,8 @@ export class Demand{
     isConfirmationRequired:boolean;
     expiration:Date;
     date:Date;
+    match?:Match;
+    seeker?:User;
+    volunteer?:User;
 }
 
