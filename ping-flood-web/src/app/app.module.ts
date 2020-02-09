@@ -12,13 +12,15 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { FormsModule } from '@angular/forms';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DetailComponent } from './components/detail/detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    MainPageComponent
+    MainPageComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,

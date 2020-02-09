@@ -27,7 +27,6 @@ export class MainPageComponent implements OnInit {
   demandsFiltered:Demand[] = [];
   
 
-
   constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal) {
 
   }
@@ -95,12 +94,14 @@ export class MainPageComponent implements OnInit {
 
   goToDetail(content, demand:Demand){
     this.demandDetail = demand;
-    this.modalCreateDemand = this.modalService.open(content,{
-      size: 'lg',
-      windowClass: 'modal-custom-lg',
-      backdrop: 'static',
-      centered: true
-    })
+    // this.modalCreateDemand = this.modalService.open(content,{
+    //   size: 'lg',
+    //   windowClass: 'modal-custom-lg',
+    //   backdrop: 'static',
+    //   centered: true
+    // })
+
+    this.router.navigateByUrl('main/'+demand.id)
   }
 
 
