@@ -37,9 +37,9 @@ export class MainPageComponent implements OnInit {
   }
 
   getListUser(){
-    // this.api.getListUser().subscribe(res=>{
-    //   // this.users = res as any;
-    // })
+    this.api.getListUser().subscribe(res=>{
+      this.users = res as any;
+    })
   }
 
   getTypeDescription(type: number): string {
