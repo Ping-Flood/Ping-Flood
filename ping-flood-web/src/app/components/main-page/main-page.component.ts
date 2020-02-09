@@ -3,6 +3,7 @@ import { users } from '../../dummy-data/users';
 import { ApiService } from 'src/app/services/api.service';
 import { User } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-main-page',
@@ -10,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent implements OnInit {
+
+  faPlus = faPlus;
   users = users;
   isSeekerMainPage = true;
   title = this.isSeekerMainPage ? "Offres" : "Demandes";
@@ -34,9 +37,9 @@ export class MainPageComponent implements OnInit {
   }
 
   getListUser(){
-    this.api.getListUser().subscribe(res=>{
-      // this.users = res as any;
-    })
+    // this.api.getListUser().subscribe(res=>{
+    //   // this.users = res as any;
+    // })
   }
 
   getTypeDescription(type: number): string {
@@ -56,6 +59,10 @@ export class MainPageComponent implements OnInit {
   }
 
   goToDetail(user:User){
+
+  }
+
+  createAlert(){
 
   }
 }

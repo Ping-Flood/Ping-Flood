@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
       if(res){
         this.wrongLogin = false;
         document.cookie = JSON.stringify(res);
-        alert(document.cookie)
         this.router.navigateByUrl('/main', { state: res });
       }else{
         this.wrongLogin = true;
