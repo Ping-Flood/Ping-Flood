@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyFirtWebApi.Models
 {
@@ -13,9 +14,24 @@ namespace MyFirtWebApi.Models
         public int Id { get; set; }
 
         /// <summary>
+        /// DemandTypeId
+        /// </summary>
+        public int DemandTypeId { get; set; }
+
+        /// <summary>
+        /// DemandType
+        /// </summary>
+        public DemandTypes DemandType { get; set; }
+
+        /// <summary>
         /// SeekerUserId
         /// </summary>
         public int? SeekerUserId { get; set; }
+
+        /// <summary>
+        /// SeekerUser
+        /// </summary>
+        public User SeekerUser { get; set; }
 
         /// <summary>
         /// VolonteerUserId
@@ -23,9 +39,14 @@ namespace MyFirtWebApi.Models
         public int? VolonteerUserId { get; set; }
 
         /// <summary>
-        /// ConfirmationRequired
+        /// VolonteerUser
         /// </summary>
-        public bool ConfirmationRequired { get; set; }
+        public User VolonteerUser { get; set; }
+
+        /// <summary>
+        /// IsConfirmationRequired
+        /// </summary>
+        public bool IsConfirmationRequired { get; set; }
 
         /// <summary>
         /// Expiration
