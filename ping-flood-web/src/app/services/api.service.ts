@@ -64,4 +64,10 @@ export class ApiService {
     }));
   }
 
+  getDemand(id: string):Observable<Demand>{
+    return this.http.get(`${this.baseUrl}/demand/get?id=${id}`, {headers:this.headers}).pipe(map(res => {
+      return (<any>res) as Demand;
+    }));
+  }
+
 }

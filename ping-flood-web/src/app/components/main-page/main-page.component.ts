@@ -94,14 +94,7 @@ export class MainPageComponent implements OnInit {
 
   goToDetail(content, demand:Demand){
     this.demandDetail = demand;
-    // this.modalCreateDemand = this.modalService.open(content,{
-    //   size: 'lg',
-    //   windowClass: 'modal-custom-lg',
-    //   backdrop: 'static',
-    //   centered: true
-    // })
-
-    this.router.navigateByUrl('main/'+demand.id)
+    this.router.navigateByUrl('demand/'+demand.id, { state: demand })
   }
 
 

@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailComponent } from './components/detail/detail.component';
+import { DemandDetailComponent } from './components/demand-detail/demand-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DetailComponent } from './components/detail/detail.component';
     LoginComponent,
     SignUpComponent,
     MainPageComponent,
-    DetailComponent
+    DetailComponent,
+    DemandDetailComponent
   ],
   imports: [
     BrowserModule,
