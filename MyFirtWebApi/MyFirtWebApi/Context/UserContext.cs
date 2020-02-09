@@ -101,7 +101,9 @@ namespace MyFirtWebApi.Context
         /// <returns></returns>
         public Users Authenticate(Users user)
         {
-            return this.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+            Users result = this.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+
+            return result;
         }
     }
 }

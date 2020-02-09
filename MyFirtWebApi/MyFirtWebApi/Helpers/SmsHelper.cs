@@ -8,6 +8,8 @@ public static class SMSHelper
     {
         // Find your Account Sid and Token at twilio.com/console
         // DANGER! This is insecure. See http://twil.io/secure
+        const string accountSid = "AC2ce075ad895e5f95e590fb1e3916a72c";
+        const string authToken = "315e146a0a9cf831dbc4cc9f1738c3f6";
 
         TwilioClient.Init(accountSid, authToken);
 

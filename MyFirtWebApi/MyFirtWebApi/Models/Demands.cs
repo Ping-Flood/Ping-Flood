@@ -3,7 +3,7 @@
 namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// Demand
+    /// Demands
     /// </summary>
     public class Demands
     {
@@ -56,5 +56,10 @@ namespace MyFirtWebApi.Models
         /// Date
         /// </summary>
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// Description
+        /// </summary>
+        public string Description { get; set; }
     }
 }

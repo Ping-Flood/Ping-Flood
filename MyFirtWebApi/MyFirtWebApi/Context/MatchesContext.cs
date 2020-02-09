@@ -90,14 +90,17 @@ namespace MyFirtWebApi.Context
         }
 
         /// <summary>
-        /// Waiting for approval
+        /// HandleSecureDemand
         /// </summary>
         /// <param name="demand"></param>
         private static void HandleSecureDemand(Demands demand)
         {
+            string message = $"User.FirstName & User.LastName Catégorie: Demand.DemandType User." +
+                $"Ville Voici le lien afin de confirmer votre participation LINK Merci de participer au soutien collectif via Ping-Flood";
+
             string phoneNumber = demand.SeekerUser.Phone;
 
-            SMSHelper.SendSMS(phoneNumber, "just a test");
+            SMSHelper.SendSMS(phoneNumber, $"+1{message}");
         }
     }
 }
