@@ -111,17 +111,39 @@ namespace MyFirtWebApi.Context
 
                 if (isSeeker && !isVolonteer)
                 {
-                    result = this.Demands.Where(x => x.VolonteerUserId.HasValue &&
-                                                x.Expiration >= DateTime.Now).ToList();
+                    result = this.Demands.Where(x
+                        => x.VolonteerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
+                        => new Demand
+                        {
+                            DemandType = x.DemandType,
+                            Date = x.Date,
+                            SeekerUser = x.SeekerUser,
+                            VolonteerUser = x.VolonteerUser
+                        }).ToList();
                 }
                 else if (isVolonteer && !isSeeker)
                 {
-                    result = this.Demands.Where(x => x.SeekerUserId.HasValue &&
-                                                x.Expiration >= DateTime.Now).ToList();
+                    result = this.Demands.Where(x
+                        => x.SeekerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
+                        => new Demand
+                        {
+                            DemandType = x.DemandType,
+                            Date = x.Date,
+                            SeekerUser = x.SeekerUser,
+                            VolonteerUser = x.VolonteerUser
+                        }).ToList();
                 }
                 else if (isVolonteer && isSeeker)
                 {
-                    result = this.Demands.Where(x => x.Expiration >= DateTime.Now).ToList();
+                    result = this.Demands.Where(x
+                        => x.Expiration >= DateTime.Now).Select(x
+                        => new Demand
+                        {
+                            DemandType = x.DemandType,
+                            Date = x.Date,
+                            SeekerUser = x.SeekerUser,
+                            VolonteerUser = x.VolonteerUser
+                        }).ToList();
                 }
 
                 this.sqlConnection.Close();

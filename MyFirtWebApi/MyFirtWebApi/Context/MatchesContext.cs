@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -15,6 +16,11 @@ namespace MyFirtWebApi.Context
         /// Matches
         /// </summary>
         public DbSet<Matche> Matches { get; set; }
+
+        /// <summary>
+        /// Demands
+        /// </summary>
+        public DbSet<Demand> Demands { get; set; }
 
         /// <summary>
         /// _connetionString
@@ -43,7 +49,6 @@ namespace MyFirtWebApi.Context
             optionsBuilder.UseSqlServer(_connetionString);
         }
 
-
         /// <summary>
         /// Create
         /// </summary>
@@ -55,15 +60,19 @@ namespace MyFirtWebApi.Context
             {
                 this.sqlConnection.Open();
 
-                EntityEntry<Matche> entity = this.Matches.Add(matche);
+                Demand demand = this.Demands.Where(x => x.Id == matche.DemandsId).First();
+
+                //matche.DemandStatusId = demand.IsConfirmationRequired ? DemandStatus.
+
+                //EntityEntry < Matche > entity = this.Matches.Add(matche);
 
                 this.SaveChanges();
 
-                Matche result = entity.Entity;
+                //Matche result = entity.Entity;
 
-                this.sqlConnection.Close();
+                //this.sqlConnection.Close();
 
-                return result;
+                return null;
             }
             catch (Exception)
             {

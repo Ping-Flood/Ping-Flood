@@ -1,9 +1,9 @@
 ﻿namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// DemandStatus
+    /// DemandTypes
     /// </summary>
-    public class DemandStatus
+    public class DemandTypes
     {
         /// <summary>
         /// Id
