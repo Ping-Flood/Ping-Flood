@@ -28,14 +28,12 @@ export class Demand{
     id:number;
     demandTypeId:number;
     demandType:DemandType;
-    seekerUser:User;
-    seekerUserId?:number;
-    volonteerUser:User;
-    volunteerUserId?:number;
+    seekerUsers:User;
+    seekerUsersId?:number;
+    volunteerUsers:User;
+    volunteerUsersId?:number;
     isConfirmationRequired:boolean;
     match?:Match;
-    seeker?:User;
-    volunteer?:User;
     expiration:Date|string;
     date:Date|string;
     commentaire:string;

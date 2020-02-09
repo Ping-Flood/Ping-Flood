@@ -1,15 +1,61 @@
 <div class="container">
-  <p>{{ demand.id }}</p>
-  <div class="row">
-    <label class="col-sm-4" style="width: 25%;">Filtre</label>
-    <select class=" col-sm-8 input-font" style="width: 75%;" [(ngModel)]="filtreTypeDemande" (change)="changeFiltre()" [ngModelOptions]="{standalone: true}">
-      <option value="0">Tous</option>
-      <option value="1">Bouffe</option>
-      <option value="2">Bras</option>
-      <option value="3">Matériaux</option>
-      <option value="4">Sacs de sable</option>
-      <option value="5">Soutien psychologique</option>
-      <option value="6">Autre</option>
-    </select>
+  <h1 style="position: absolute; top: 0; left:33%;color:white;">Assister</h1>
+
+  <div *ngIf="demand.seekerUsersId>0">
+    <label for="">{{ demand.seekerUsers.firstname }} {{ demand.seekerUsers.lastname }}</label>
+    <!-- <div>Téléphone : {{demand.seekerUsers.phone}}</div>
+    <div>Courriel : {{demand.seekerUsers.email}}</div> -->
+    <!-- <div>Adresse : {{demand.seekerUsers.address}}</div> -->
+    <div>city : {{demand.seekerUsers.city}}</div>
   </div>
+
+  <div *ngIf="demand.volunteerUsersId>0">
+    <label for="">{{ demand.volunteerUsers.firstname }} {{ demand.volunteerUsers.lastname }}</label><br>
+    <!-- <div>Téléphone : {{demand.volunteerUsers.phone}}</div>
+    <div>Courriel : {{demand.volunteerUsers.email}}</div> -->
+    <!-- <div>Adresse : {{demand.volunteerUsers.address}}</div> -->
+    <div>city : {{demand.volunteerUsers.city}}</div>
+  </div>
+
+  <br>
+  <div>
+    Type de demande : {{demand.demandType?.description}}
+  </div>
+
+  <br *ngIf="demand.isConfirmationRequired">
+  <div *ngIf="demand.isConfirmationRequired">Une confirmation est requise</div>
+  <br>
+
+  <div>
+    Date d'expiration: {{demand.expiration}}
+  </div>
+
+  <br>
+  <div>
+    Description:
+  </div>
+  <div>
+    {{demand.description}}
+  </div>
+
+  <br>
+  <div class="row center">
+    <button class="btn btn-primary input-font center" style="margin:auto;" (click)="aider(modalTelephone)">Aider</button>
+  </div>
+
 </div>
+
+<ng-template #modalTelephone>
+  <div class="modal-header">
+    <label for="">Contacter {{userDisplay.firstname}}</label>
+    
+  </div>
+  <div class="modal-content font-input">
+
+    Téléphone
+    <a href="tel:{{userDisplay.phone}}">{{userDisplay.phone}}</a>
+    <br>
+    Courriel
+    <a href="mailto:{{userDisplay.email}}">{{userDisplay.email}}</a>
+  </div>
+</ng-template>

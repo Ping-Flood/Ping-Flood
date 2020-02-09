@@ -23,13 +23,13 @@
   <a *ngFor="let demand of demandsFiltered" (click)="goToDetail(demand)"
     class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 *ngIf="typeList==1" class="mb-1">{{ demand.volonteerUser.firstname }} {{demand.volonteerUser.lastname}}</h5>
-      <h5 *ngIf="typeList==2" class="mb-1">{{ demand.seekerUser.firstname }} {{demand.seekerUser.lastname}}</h5>
+      <h5 *ngIf="typeList==1" class="mb-1">{{ demand.volunteerUsers.firstname }} {{demand.volunteerUsers.lastname}}</h5>
+      <h5 *ngIf="typeList==2" class="mb-1">{{ demand.seekerUsers.firstname }} {{demand.seekerUsers.lastname}}</h5>
       <small>{{ demand.expiration }}</small>
     </div>
     <p class="mb-1">Catégorie: {{ demand.demandType.description }}</p>
-    <small *ngIf="demand.volonteerUser&&demand.volonteerUser.address && typeList==1">{{ demand.volonteerUser.city }}</small>
-    <small *ngIf="demand.seekerUser&&demand.seekerUser.address && typeList==2">{{ demand.seekerUser.city }}</small>
+    <small *ngIf="demand.volunteerUsers&&demand.volunteerUsers.address && typeList==1">{{ demand.volunteerUsers.city }}</small>
+    <small *ngIf="demand.seekerUsers&&demand.seekerUsers.address && typeList==2">{{ demand.seekerUsers.city }}</small>
   </a>
 </div>
 

@@ -33,7 +33,7 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit() {
     this.user = history.state;
-    if(this.user.id == null || this.user.id==undefined){
+    if(this.user && (this.user.id == null || this.user.id==undefined)){
       try {
         this.user = JSON.parse(document.cookie.split(';')[document.cookie.split(';').length-1]) as User;
         console.log(this.user);
@@ -59,8 +59,9 @@ export class MainPageComponent implements OnInit {
   }
 
   getUserName(demand: Demand): string{
-    let demandUser = demand.seeker != null ? demand.seeker : demand.volunteer;
-    return  demandUser.firstname + " " + demandUser.lastname;
+    // let demandUser = demand.seeker != null ? demand.seeker : demand.volunteer;
+    // return  demandUser.firstname + " " + demandUser.lastname;
+    return '';
   }
 
   getDate(demand): string{
@@ -100,7 +101,7 @@ export class MainPageComponent implements OnInit {
 
   goToDetail(demand:Demand){
     this.demandDetail = demand;
-    this.router.navigateByUrl('demand/'+demand.id, { state: demand })
+    this.router.navigateByUrl('demand/'+demand.id, { state: this.user })
   }
 
 
@@ -131,10 +132,10 @@ export class MainPageComponent implements OnInit {
       demand.date = new Date();
       demand.commentaire = this.comment;
       if(this.typeList == 1){
-        demand.volunteerUserId = this.user.id;
+        demand.volunteerUsersId = this.user.id;
       }
       if(this.typeList == 2){
-        demand.seekerUserId = this.user.id;
+        demand.seekerUsersId = this.user.id;
       }
 
       this.api.createDemand(demand).subscribe(res=>{
