@@ -44,5 +44,25 @@
         /// Phone
         /// </summary>
         public string Phone { get; set; }
+
+        /// <summary>
+        /// IsSeeker
+        /// </summary>
+        public bool IsSeeker { get; set; }
+
+        /// <summary>
+        /// IsVolonteer
+        /// </summary>
+        public bool IsVolonteer { get; set; }
+
+        /// <summary>
+        /// EmailAlert
+        /// </summary>
+        public bool EmailAlert { get; set; }
+
+        /// <summary>
+        /// SmsAlert
+        /// </summary>
+        public bool SmsAlert { get; set; }
     }
 }
