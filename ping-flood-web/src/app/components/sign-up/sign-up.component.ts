@@ -65,4 +65,8 @@ export class SignUpComponent implements OnInit {
     return cond1 && cond2;
   }
 
+  goToLogin(){
+    this.router.navigateByUrl('login');
+  }
+
 }
