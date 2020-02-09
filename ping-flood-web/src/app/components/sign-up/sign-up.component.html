@@ -7,9 +7,9 @@
 <div class="center margin-center width50">
     <form>
         
-        <label for="">Prenom</label>
+        <label for="">Prénom</label>
         <div>    
-            <input style="width: 100%;" type="text" placeholder="Prenom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" class="input-font">
+            <input style="width: 100%;" type="text" placeholder="Prénom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
         
         <label for="">Nom</label>
@@ -22,12 +22,17 @@
             <input style="width: 100%;" type="email" placeholder="Courriel" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
+        <label for="">Téléphone</label>
+        <div>
+            <input style="width: 100%;" type="tel" placeholder="Courriel" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}" class="input-font">
+        </div>
+
         <label for="">Mot de passe</label>
         <div [ngStyle]="stylePassword()">
             <input style="width: 100%;" type="password" placeholder="Mot de passe" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
-        <label for="">Confirmer Mot de passe</label>
+        <label for="">Confirmer mot de passe</label>
         <div [ngStyle]="stylePassword()">
             <input style="width: 100%;" type="password" placeholder="Mot de passe" [(ngModel)]="passwordConfirm" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
@@ -42,14 +47,30 @@
             <input style="width: 100%;" type="text" placeholder="Ville" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
-        <label for="">Secteur</label>
+        <label for="">Est un sinistré</label>
         <div>
-            <input style="width: 100%;" type="text" placeholder="Secteur" [(ngModel)]="secteur" [ngModelOptions]="{standalone: true}" class="input-font">
+            <ui-switch [(ngModel)]="isSeeker" [ngModelOptions]="{standalone: true}"></ui-switch>
         </div>
+
+        <label for="">Est un volontaire</label>
+        <div>
+            <ui-switch [(ngModel)]="isVolunteer" [ngModelOptions]="{standalone: true}"></ui-switch>
+        </div>
+
+        <label for="">Recevoir un message texte</label>
+        <div>
+            <ui-switch [(ngModel)]="smsAlert" [ngModelOptions]="{standalone: true}"></ui-switch>
+        </div>
+
+        <label for="">Recevoir un courriel</label>
+        <div>
+            <ui-switch [(ngModel)]="emailAlert" [ngModelOptions]="{standalone: true}"></ui-switch>
+        </div>
+
         
         <br>
-        <button class="btn btn-primary input-font" (click)="createUser()" [disabled]="isDisable()">Creer</button>
-        <a href="/login" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Deja un Compte</a>
+        <button class="btn btn-primary input-font" (click)="createUser()" [disabled]="isDisable()">Créer</button>
+        <a href="/login" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Déja un compte</a>
 
     </form>
 </div>

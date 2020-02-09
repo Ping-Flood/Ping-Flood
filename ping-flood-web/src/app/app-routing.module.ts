@@ -3,11 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { DetailComponent } from './components/detail/detail.component';
+import { DemandDetailComponent } from './components/demand-detail/demand-detail.component';
 
 
 const routes: Routes = [
-  { path: '',
-    redirectTo: '/login',
+  { 
+    path: '',
+    component: LoginComponent,
     pathMatch: 'full'
   },
   {
@@ -21,6 +24,10 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainPageComponent
+  },
+  {
+    path: 'demand/:id',
+    component: DemandDetailComponent
   }
 ];
 

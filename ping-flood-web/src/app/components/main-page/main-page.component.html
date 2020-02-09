@@ -1,18 +1,42 @@
-<div class="container">
-  <h2>{{ title }}</h2>
 
-  <a *ngFor="let demand of demands" (click)="goToDetail(demand)"
+
+<div class="container">
+
+  <div class="row">
+    <button *ngIf="typeList==2" class="btn btn-danger col-sm input-font" style="width: 100%;" (click)="changeType(2)" [disabled]="typeList==2">Sinistré(es)</button>
+    <button *ngIf="typeList==1" class="btn btn-success col-sm input-font" style="width: 100%;" (click)="changeType(1)" [disabled]="typeList==1">Volontaire(s)</button>
+  </div>
+
+  <div class="row">
+    <label class="col-sm-4" style="width: 25%;">Filtre</label>
+    <select class=" col-sm-8 input-font" style="width: 75%;" [(ngModel)]="filtreTypeDemade" (change)="changeFiltre()" [ngModelOptions]="{standalone: true}">
+      <option value="0">Tous</option>
+      <option value="1">Bouffe</option>
+      <option value="2">Bras</option>
+      <option value="3">Matériaux</option>
+      <option value="4">Sacs de sable</option>
+      <option value="5">Soutien psychologique</option>
+      <option value="6">Autre</option>
+    </select>
+  </div>
+
+  <div style="max-height: calc(100vh - 200px);overflow-y: auto;">
+    <a *ngFor="let demand of demandsFiltered" (click)="goToDetail(demand)"
     class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ getUserName(demand) }}</h5>
-      <small>{{ demand.date | date:'medium' }}</small>
+      <h5 *ngIf="typeList==1" class="mb-1">{{ demand.volunteerUsers.firstname }} {{demand.volunteerUsers.lastname}}</h5>
+      <h5 *ngIf="typeList==2" class="mb-1">{{ demand.seekerUsers.firstname }} {{demand.seekerUsers.lastname}}</h5>
+      <small>{{ demand.expiration }}</small>
     </div>
-    <p class="mb-1">Catégorie: {{ getTypeDescription(demand.category) }}</p>
-    <small *ngIf="demand.seeker">{{ demand.seeker.address }}</small>
+    <p class="mb-1">Catégorie: {{ demand.demandType.description }}</p>
+    <small *ngIf="demand.volunteerUsers&&demand.volunteerUsers.address && typeList==1">{{ demand.volunteerUsers.city }}</small>
+    <small *ngIf="demand.seekerUsers&&demand.seekerUsers.address && typeList==2">{{ demand.seekerUsers.city }}</small>
   </a>
+  </div>
+
 </div>
 
-<div style="position: absolute;bottom: 15px;right: 15px;">
+<div style="position: fixed;bottom: 15px;right: 15px;">
   <button class="btn btn-primary btn-circle btn-xl" (click)="createAlert(createDemand)"> <fa-icon [icon]="faPlus" style="font-size: 30px;"></fa-icon> </button>
 </div>
 
@@ -27,32 +51,66 @@
   </div>
 
   <div class="modal-content">
-    <form>
+    <form style="border: none; border-radius: 0px;">
 
-      <label>Type de Demande</label>
+      <label>Type de demande</label>
       <div>
-        <select class="input-font" [(ngModel)]="typeDemand" [ngModelOptions]="{standalone: true}">
-          <option value="1" selected>Offre</option>
-          <option value="2">Demande</option>
+        <select class="input-font" style="width: 100%;" [(ngModel)]="typeDemand" [ngModelOptions]="{standalone: true}">
+          <option value="1" selected>Bouffe</option>
+          <option value="2">Bras</option>
+          <option value="3">Matériaux</option>
+          <option value="4">Sacs de sable</option>
+          <option value="5">Soutien psychologique</option>
+          <option value="6">Autre</option>
         </select>
       </div>
+      
+      <label >Commentaire</label>
+      <div>
+        <input type="text" class="input-font" style="width: 100%;" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}">
+      </div>
   
-      <label>Confirmation necessaire</label>
+      <label>Confirmation nécessaire</label>
       <div>
         <ui-switch [(ngModel)]="confirmRequired" [ngModelOptions]="{standalone: true}"></ui-switch>
       </div>
   
       <label>Expiration</label>
       <div>
-        <input type="datetime-locale" class="input-font" [(ngModel)]="expiration" [ngModelOptions]="{standalone: true}">
+        <input type="date" class="input-font" style="width: 100%;" [(ngModel)]="expiration" [ngModelOptions]="{standalone: true}">
       </div>
-  
+
+      
     </form>
 
     <div class="center" >
       <!-- <button class="btn btn-default input-font" (click)="confirmCreate(false)">Annuler</button> -->
-      <button class="btn btn-primary input-font" (click)="confirmCreate(true)">Creer</button>
+      <button class="btn btn-primary input-font" (click)="confirmCreate(true)">Créer</button>
     </div>
   </div>
   
 </ng-template>
+<!-- 
+<ng-template #detailDemand let-modal>
+
+  <div class="modal-header">
+    <h3>Détail</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true"><fa-icon [icon]="faClose" style="font-size: 30px;"></fa-icon></span>
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <form style="border: none; border-radius: 0px;">
+
+      {{ demandDetail | json }}
+      
+    </form>
+
+    <div class="center" >
+      <button class="btn btn-default input-font" (click)="confirmCreate(false)">Annuler</button>
+      <button class="btn btn-primary input-font" (click)="confirmCreate(true)">Aider</button>
+    </div>
+  </div>
+  
+</ng-template> -->

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/db-class';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,8 +19,13 @@ export class SignUpComponent implements OnInit {
   address:string;
   city:string;
   secteur:any;
+  isSeeker:boolean;
+  isVolunteer:boolean;
+  emailAlert:boolean;
+  smsAlert:boolean;
+  phone:number;
 
-  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router) { }
+  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private cookieService:CookieService) { }
 
   ngOnInit() {
   }
@@ -33,10 +39,15 @@ export class SignUpComponent implements OnInit {
       user.password = this.passwordConfirm;
       user.address = this.address;
       user.city = this.city;
-      user.sectorTypeId = (this.secteur)?this.secteur.Id:null;
+      // user.sectorTypeId = (this.secteur)?this.secteur.Id:null;
+      user.isSeeker = this.isSeeker;
+      user.isVolonteer = this.isVolunteer;
+      user.emailAlert = this.emailAlert;
+      user.smsAlert = this.smsAlert;
+      user.phone = this.phone;
 
       this.api.signup(user).subscribe(res=>{
-        document.cookie = JSON.stringify(res);
+        this.cookieService.set('user_pf', JSON.stringify(res));
         this.router.navigateByUrl('/main', { state: res });
       })
     }

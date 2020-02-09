@@ -9,7 +9,7 @@ export class User {
     sectorTypeId:number;
     matches?:Match[];
     isSeeker:boolean;
-    isVolunteer:boolean;
+    isVolonteer:boolean;
     emailAlert:boolean;
     smsAlert:boolean;
     phone:number;
@@ -27,13 +27,19 @@ export class Match{
 export class Demand{
     id:number;
     demandTypeId:number;
-    seekerUserId?:number;
-    volunteerUserId?:number;
+    demandType:DemandType;
+    seekerUsers:User;
+    seekerUsersId?:number;
+    volunteerUsers:User;
+    volunteerUsersId?:number;
     isConfirmationRequired:boolean;
-    expiration:Date;
-    date:Date;
     match?:Match;
-    seeker?:User;
-    volunteer?:User;
+    expiration:Date|string;
+    date:Date|string;
+    commentaire:string;
 }
 
+export class DemandType{
+    id:number;
+    description:string;
+}

@@ -12,13 +12,18 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 import { FormsModule } from '@angular/forms';
 import { UiSwitchModule } from 'ngx-ui-switch';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DetailComponent } from './components/detail/detail.component';
+import { DemandDetailComponent } from './components/demand-detail/demand-detail.component';
+import { CookieService } from 'ngx-cookie-service'
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    MainPageComponent
+    MainPageComponent,
+    DetailComponent,
+    DemandDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FontAwesomeModule,
     UiSwitchModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,67 @@
+<div class="container">
+  <h1 style="position: absolute; top: 0; left:33%;color:white;">Assister <span (click)="return()" class="clickable"><fa-icon [icon]="faClose"></fa-icon></span></h1>
+
+  <div *ngIf="demand.seekerUsersId>0">
+    <label for="">{{ demand.seekerUsers.firstname }} {{ demand.seekerUsers.lastname }}</label>
+    <div>city : {{demand.seekerUsers.city}}</div>
+  </div>
+
+  <div *ngIf="demand.volunteerUsersId>0">
+    <label for="">{{ demand.volunteerUsers.firstname }} {{ demand.volunteerUsers.lastname }}</label><br>
+    <div>city : {{demand.volunteerUsers.city}}</div>
+  </div>
+
+  <br>
+  <div>
+    Type de demande : {{demand.demandType?.description}}
+  </div>
+
+  <br *ngIf="demand.isConfirmationRequired">
+  <div *ngIf="demand.isConfirmationRequired">Une confirmation est requise.</div>
+  <br>
+
+  <div>
+    Date d'expiration: {{demand.expiration}}
+  </div>
+
+  <br>
+  <div>
+    Description:
+  </div>
+  <div>
+    {{demand.description}}
+  </div>
+
+  <br>
+  <div class="row center">
+    <button class="btn btn-primary input-font center" style="margin:auto;" (click)="ouvrirDialog(modalDialog)">Aider</button>
+  </div>
+
+</div>
+
+<ng-template #modalTelephone>
+  <div class="modal-header">
+    <label for="">Contacter {{userDisplay.firstname}}</label>
+    
+  </div>
+  <div class="modal-content font-input">
+
+    Téléphone
+    <a href="tel:{{userDisplay.phone}}">{{userDisplay.phone}}</a>
+    <br>
+    Courriel
+    <a href="mailto:{{userDisplay.email}}">{{userDisplay.email}}</a>
+  </div>
+</ng-template>
+
+
+<ng-template #modalDialog let-modal>
+  <div class="modal-header">
+    <label for="">Obtenir Contact</label>
+    
+  </div>
+  <div class="modal-content font-input">
+    <button class="btn btn-light input-font" (click)="modal.dismiss('NON')">Non</button>
+    <button class="btn btn-primary input-font"  (click)="aider(modalTelephone)">Oui</button>
+  </div>
+</ng-template>
