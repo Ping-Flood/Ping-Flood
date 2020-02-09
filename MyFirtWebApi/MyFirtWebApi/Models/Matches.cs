@@ -30,7 +30,7 @@ namespace MyFirtWebApi.Models
         /// <summary>
         /// DemandStatusId
         /// </summary>
-        public bool DemandStatusId { get; set; }
+        public int DemandStatusId { get; set; }
 
         /// <summary>
         /// Date
