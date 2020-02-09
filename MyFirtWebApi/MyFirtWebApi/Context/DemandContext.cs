@@ -56,7 +56,19 @@ namespace MyFirtWebApi.Context
             {
                 this.sqlConnection.Open();
 
-                Demands result = this.Demands.Where(x => x.Id == id).FirstOrDefault();
+                Demands result = this.Demands.Where(x => x.Id == id).Select(x => new Demands
+                {
+                    Id = x.Id,
+                    DemandType = x.DemandType,
+                    Date = x.Date,
+                    Expiration = x.Expiration,
+                    SeekerUser = x.SeekerUser,
+                    SeekerUserId = x.SeekerUserId,
+                    VolonteerUserId = x.VolonteerUserId,
+                    VolonteerUser = x.VolonteerUser,
+                    Description = x.Description,
+                    DemandTypeId = x.DemandTypeId
+                }).FirstOrDefault();
 
                 this.sqlConnection.Close();
 
