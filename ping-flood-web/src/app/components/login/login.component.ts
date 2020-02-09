@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { User } from 'src/app/models/db-class';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   wrongLogin=false;
 
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
   }
@@ -24,10 +25,11 @@ export class LoginComponent implements OnInit {
     user.email = this.username;
     user.password = this.password;
     this.api.login(user).subscribe(res=>{
-      console.log(res);
       if(res){
         this.wrongLogin = false;
-        window.location.href = '/main'
+        document.cookie = JSON.stringify(res);
+        alert(document.cookie)
+        this.router.navigateByUrl('/main', { state: res });
       }else{
         this.wrongLogin = true;
       }

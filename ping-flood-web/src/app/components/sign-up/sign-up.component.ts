@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/db-class';
 import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,7 +19,7 @@ export class SignUpComponent implements OnInit {
   city:string;
   secteur:any;
 
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
   }
@@ -35,7 +36,8 @@ export class SignUpComponent implements OnInit {
       user.secteurTypeId = (this.secteur)?this.secteur.Id:null;
 
       this.api.signup(user).subscribe(res=>{
-        console.log(res);
+        document.cookie = JSON.stringify(res);
+        this.router.navigateByUrl('/main', { state: res });
       })
     }
   }

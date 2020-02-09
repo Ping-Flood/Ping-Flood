@@ -1,15 +1,15 @@
-<head>
+<!-- <head>
   <title>{{ title }}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head>
+</head> -->
 
 <div class="container">
   <h2>{{ title }}</h2>
 
-  <a *ngFor="let user of users" href="main"
+  <a *ngFor="let user of users" (click)="goToDetail(user)"
     class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{ user.profile.name }}</h5>
