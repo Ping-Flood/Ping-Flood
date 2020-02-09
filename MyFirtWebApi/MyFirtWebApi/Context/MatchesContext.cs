@@ -62,22 +62,42 @@ namespace MyFirtWebApi.Context
 
                 Demands demand = this.Demands.Where(x => x.Id == matche.DemandsId).First();
 
-                //matche.DemandStatusId = demand.IsConfirmationRequired ? DemandStatus.
+                if (demand.IsConfirmationRequired)
+                {
+                    matche.DemandStatusId = (int)DemandStatus.WaitingSecure;
+                    HandleSecureDemand(demand);
+                }
+                else
+                {
+                    matche.DemandStatusId = (int)DemandStatus.Approved;
+                    matche.Demands = demand;
+                }
 
-                //EntityEntry < Matche > entity = this.Matches.Add(matche);
+                EntityEntry<Matches> entity = this.Matches.Add(matche);
 
                 this.SaveChanges();
 
-                //Matche result = entity.Entity;
+                Matches result = entity.Entity;
 
-                //this.sqlConnection.Close();
+                this.sqlConnection.Close();
 
-                return null;
+                return result;
             }
             catch (Exception)
             {
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Waiting for approval
+        /// </summary>
+        /// <param name="demand"></param>
+        private static void HandleSecureDemand(Demands demand)
+        {
+            string phoneNumber = demand.SeekerUser.Phone;
+
+            SMSHelper.SendSMS(phoneNumber, "just a test");
         }
     }
 }

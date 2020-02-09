@@ -18,6 +18,11 @@ namespace MyFirtWebApi.Models
         public int DemandsId { get; set; }
 
         /// <summary>
+        /// Demands
+        /// </summary>
+        public Demands Demands { get; set; }
+
+        /// <summary>
         /// SeekerUsersId
         /// </summary>
         public int SeekerUsersId { get; set; }

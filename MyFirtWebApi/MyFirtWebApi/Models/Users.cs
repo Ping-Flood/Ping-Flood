@@ -39,5 +39,10 @@
         /// City
         /// </summary>
         public string City { get; set; }
+
+        /// <summary>
+        /// Phone
+        /// </summary>
+        public string Phone { get; set; }
     }
 }
