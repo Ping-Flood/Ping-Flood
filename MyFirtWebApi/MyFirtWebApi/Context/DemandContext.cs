@@ -63,8 +63,8 @@ namespace MyFirtWebApi.Context
                     Date = x.Date,
                     Expiration = x.Expiration,
                     SeekerUser = x.SeekerUser,
-                    SeekerUserId = x.SeekerUserId,
-                    VolonteerUserId = x.VolonteerUserId,
+                    SeekerUsersId = x.SeekerUsersId,
+                    VolunteerUsersId = x.VolunteerUsersId,
                     VolonteerUser = x.VolonteerUser,
                     Description = x.Description,
                     DemandTypeId = x.DemandTypeId
@@ -124,7 +124,7 @@ namespace MyFirtWebApi.Context
                 if (isSeeker && !isVolonteer)
                 {
                     result = this.Demands.Where(x
-                        => x.SeekerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
+                        => x.SeekerUsersId.HasValue && x.Expiration >= DateTime.Now).Select(x
                         => new Demands
                         {
                             Id = x.Id,
@@ -132,13 +132,13 @@ namespace MyFirtWebApi.Context
                             Date = x.Date,
                             Expiration = x.Expiration,
                             SeekerUser = x.SeekerUser,
-                            SeekerUserId = x.SeekerUserId
+                            SeekerUsersId = x.SeekerUsersId
                         }).ToList();
                 }
                 else if (isVolonteer && !isSeeker)
                 {
                     result = this.Demands.Where(x
-                        => x.VolonteerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
+                        => x.VolunteerUsersId.HasValue && x.Expiration >= DateTime.Now).Select(x
                         => new Demands
                         {
                             Id = x.Id,
@@ -146,7 +146,7 @@ namespace MyFirtWebApi.Context
                             DemandType = x.DemandType,
                             Date = x.Date,
                             VolonteerUser = x.VolonteerUser,
-                            VolonteerUserId = x.VolonteerUserId
+                            VolunteerUsersId = x.VolunteerUsersId
                         }).ToList();
                 }
                 else if (isVolonteer && isSeeker)
@@ -160,8 +160,8 @@ namespace MyFirtWebApi.Context
                             Date = x.Date,
                             SeekerUser = x.SeekerUser,
                             VolonteerUser = x.VolonteerUser,
-                            SeekerUserId = x.SeekerUserId,
-                            VolonteerUserId = x.VolonteerUserId,
+                            SeekerUsersId = x.SeekerUsersId,
+                            VolunteerUsersId = x.VolunteerUsersId,
                             Expiration = x.Expiration
                         }).ToList();
                 }

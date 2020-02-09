@@ -28,9 +28,9 @@ namespace MyFirtWebApi.Models
         public int SeekerUsersId { get; set; }
 
         /// <summary>
-        /// VolonteerUsersId
+        /// VolunteerUsersId
         /// </summary>
-        public int VolonteerUsersId { get; set; }
+        public int VolunteerUsersId { get; set; }
 
         /// <summary>
         /// DemandStatusId

@@ -62,6 +62,8 @@ namespace MyFirtWebApi.Context
 
                 Demands demand = this.Demands.Where(x => x.Id == matche.DemandsId).First();
 
+                demand.IsConfirmationRequired = false;
+
                 if (demand.IsConfirmationRequired)
                 {
                     matche.DemandStatusId = (int)DemandStatus.WaitingSecure;

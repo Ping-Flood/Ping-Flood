@@ -23,9 +23,9 @@ namespace MyFirtWebApi.Models
         public DemandTypes DemandType { get; set; }
 
         /// <summary>
-        /// SeekerUserId
+        /// SeekerUsersId
         /// </summary>
-        public int? SeekerUserId { get; set; }
+        public int? SeekerUsersId { get; set; }
 
         /// <summary>
         /// SeekerUser
@@ -33,9 +33,9 @@ namespace MyFirtWebApi.Models
         public Users SeekerUser { get; set; }
 
         /// <summary>
-        /// VolonteerUserId
+        /// VolunteerUsersId
         /// </summary>
-        public int? VolonteerUserId { get; set; }
+        public int? VolunteerUsersId { get; set; }
 
         /// <summary>
         /// VolonteerUser
