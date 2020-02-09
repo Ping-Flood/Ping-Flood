@@ -8,14 +8,14 @@ using MyFirtWebApi.Models;
 namespace MyFirtWebApi.Context
 {
     /// <summary>
-    /// UserContext
+    /// DemandContext
     /// </summary>
-    public class UserContext : DbContext
+    public class DemandContext : DbContext
     {
         /// <summary>
-        /// Users
+        /// Demands
         /// </summary>
-        public DbSet<User> Users { get; set; }
+        public DbSet<Demand> Demands { get; set; }
 
         /// <summary>
         /// _connetionString
@@ -28,9 +28,9 @@ namespace MyFirtWebApi.Context
         private readonly SqlConnection sqlConnection;
 
         /// <summary>
-        /// UserContext
+        /// DemandContext
         /// </summary>
-        public UserContext()
+        public DemandContext()
         {
             this.sqlConnection = new SqlConnection(_connetionString);
         }
@@ -49,13 +49,13 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public User Detail(int id)
+        public Demand Detail(int id)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                User result = this.Users.Where(x => x.Id == id).FirstOrDefault();
+                Demand result = this.Demands.Where(x => x.Id == id).FirstOrDefault();
 
                 this.sqlConnection.Close();
 
@@ -70,19 +70,19 @@ namespace MyFirtWebApi.Context
         /// <summary>
         /// Create
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="demand"></param>
         /// <returns></returns>
-        public User Create(User user)
+        public Demand Create(Demand demand)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                EntityEntry<User> entity = this.Users.Add(user);
+                EntityEntry<Demand> entity = this.Demands.Add(demand);
 
                 this.SaveChanges();
 
-                User result = entity.Entity;
+                Demand result = entity.Entity;
 
                 this.sqlConnection.Close();
 
@@ -92,16 +92,6 @@ namespace MyFirtWebApi.Context
             {
                 throw;
             }
-        }
-
-        /// <summary>
-        /// Authenticate
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public User Authenticate(User user)
-        {
-            return this.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace MyFirtWebApi.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost("Login")]
-        public bool Login(User user)
+        public User Login(User user)
         {
             using UserContext context = new UserContext();
             return context.Authenticate(user);
