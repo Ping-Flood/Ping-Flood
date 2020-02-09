@@ -32,7 +32,7 @@ export class SignUpComponent implements OnInit {
       user.password = this.passwordConfirm;
       user.address = this.address;
       user.city = this.city;
-      user.secteurTypeId = (this.secteur)?this.secteur.Id:null;
+      user.sectorTypeId = (this.secteur)?this.secteur.Id:null;
 
       this.api.signup(user).subscribe(res=>{
         console.log(res);

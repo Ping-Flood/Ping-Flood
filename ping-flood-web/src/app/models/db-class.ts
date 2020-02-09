@@ -6,20 +6,32 @@ export class User {
     password:string;
     address:string;
     city:string;
-    secteurTypeId:number;
-    offers?:Offer[];
-    demands?:Demand[];
+    sectorTypeId:number;
+    matches?:Match[];
+    isSeeker:boolean;
+    isVolunteer:boolean;
+    emailAlert:boolean;
+    smsAlert:boolean;
+    phone:number;
 }
 
-export class Offer{
-    id:string;
-    title:string;
-    msg:string;
+export class Match{
+    id?:number;
+    demandsId:number;
+    seekerUsersId:number;
+    volunteerUsersId:number;
+    demandStatusId:number;
+    date:Date;
+    demand:Demand;
 }
 
 export class Demand{
-    id:string;
-    title:string;
-    msg:string;
+    id:number;
+    demandTypeId:number;
+    seekerUserId?:number;
+    volunteerUserId?:number;
+    isConfirmationRequired:boolean;
+    expiration:Date;
+    date:Date;
 }
 
