@@ -115,8 +115,10 @@ namespace MyFirtWebApi.Context
                         => x.VolonteerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
                         => new Demands
                         {
+                            Id = x.Id,
                             DemandType = x.DemandType,
                             Date = x.Date,
+                            Expiration = x.Expiration,
                             SeekerUser = x.SeekerUser,
                             VolonteerUser = x.VolonteerUser
                         }).ToList();
