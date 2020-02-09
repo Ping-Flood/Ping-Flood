@@ -3,9 +3,9 @@
 namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// Matche
+    /// Matches
     /// </summary>
-    public class Matche
+    public class Matches
     {
         /// <summary>
         /// Id

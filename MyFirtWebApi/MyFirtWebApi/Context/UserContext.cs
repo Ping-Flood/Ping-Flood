@@ -15,7 +15,7 @@ namespace MyFirtWebApi.Context
         /// <summary>
         /// Users
         /// </summary>
-        public DbSet<User> Users { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         /// <summary>
         /// _connetionString
@@ -49,13 +49,13 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public User Detail(int id)
+        public Users Detail(int id)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                User result = this.Users.Where(x => x.Id == id).FirstOrDefault();
+                Users result = this.Users.Where(x => x.Id == id).FirstOrDefault();
 
                 this.sqlConnection.Close();
 
@@ -72,17 +72,17 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public User Create(User user)
+        public Users Create(Users user)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                EntityEntry<User> entity = this.Users.Add(user);
+                EntityEntry<Users> entity = this.Users.Add(user);
 
                 this.SaveChanges();
 
-                User result = entity.Entity;
+                Users result = entity.Entity;
 
                 this.sqlConnection.Close();
 
@@ -99,7 +99,7 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public User Authenticate(User user)
+        public Users Authenticate(Users user)
         {
             return this.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
         }

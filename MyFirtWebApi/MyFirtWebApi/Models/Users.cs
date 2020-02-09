@@ -1,9 +1,9 @@
 ﻿namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// User
+    /// Users
     /// </summary>
-    public class User
+    public class Users
     {
         /// <summary>
         /// Id

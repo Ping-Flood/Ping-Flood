@@ -17,7 +17,7 @@ namespace MyFirtWebApi.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpGet("Get")]
-        public User Get(int userId)
+        public Users Get(int userId)
         {
             using UserContext context = new UserContext();
             return context.Detail(userId);
@@ -30,7 +30,7 @@ namespace MyFirtWebApi.Controllers
         /// <returns></returns>
         [HttpPost("Create")]
         [EnableCors("_myAllowSpecificOrigins")]
-        public User Create(User user)
+        public Users Create(Users user)
         {
             using UserContext context = new UserContext();
             return context.Create(user);
@@ -42,7 +42,7 @@ namespace MyFirtWebApi.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPost("Login")]
-        public User Login(User user)
+        public Users Login(Users user)
         {
             using UserContext context = new UserContext();
             return context.Authenticate(user);

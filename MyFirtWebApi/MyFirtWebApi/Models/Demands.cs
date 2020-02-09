@@ -6,7 +6,7 @@ namespace MyFirtWebApi.Models
     /// <summary>
     /// Demand
     /// </summary>
-    public class Demand
+    public class Demands
     {
         /// <summary>
         /// Id
@@ -31,7 +31,7 @@ namespace MyFirtWebApi.Models
         /// <summary>
         /// SeekerUser
         /// </summary>
-        public User SeekerUser { get; set; }
+        public Users SeekerUser { get; set; }
 
         /// <summary>
         /// VolonteerUserId
@@ -41,7 +41,7 @@ namespace MyFirtWebApi.Models
         /// <summary>
         /// VolonteerUser
         /// </summary>
-        public User VolonteerUser { get; set; }
+        public Users VolonteerUser { get; set; }
 
         /// <summary>
         /// IsConfirmationRequired

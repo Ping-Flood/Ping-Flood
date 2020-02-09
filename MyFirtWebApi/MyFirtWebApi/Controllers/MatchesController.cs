@@ -17,7 +17,7 @@ namespace MyFirtWebApi.Controllers
         /// <returns></returns>
         [HttpPost("Create")]
         [EnableCors("_myAllowSpecificOrigins")]
-        public Matche Create(Matche matches)
+        public Matches Create(Matches matches)
         {
             using MatcheContext context = new MatcheContext();
             return context.Create(matches);

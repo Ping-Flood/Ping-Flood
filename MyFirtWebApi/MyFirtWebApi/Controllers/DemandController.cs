@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MyFirtWebApi.Context;
 using MyFirtWebApi.Models;
 
@@ -18,7 +17,7 @@ namespace MyFirtWebApi.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("Get")]
-        public Demand Get(int id)
+        public Demands Get(int id)
         {
             using DemandContext context = new DemandContext();
             return context.Detail(id);
@@ -31,7 +30,7 @@ namespace MyFirtWebApi.Controllers
         /// <returns></returns>
         [HttpPost("Create")]
         [EnableCors("_myAllowSpecificOrigins")]
-        public Demand Create(Demand demand)
+        public Demands Create(Demands demand)
         {
             using DemandContext context = new DemandContext();
             return context.Create(demand);
@@ -43,7 +42,7 @@ namespace MyFirtWebApi.Controllers
         /// <param name="demand"></param>
         /// <returns></returns>
         [HttpGet("GetDemandList")]
-        public IEnumerable<Demand> GetDemandList(bool isSeeker, bool isVolonteer)
+        public IEnumerable<Demands> GetDemandList(bool isSeeker, bool isVolonteer)
         {
             using DemandContext context = new DemandContext();
             return context.GetDemandList(isSeeker, isVolonteer);

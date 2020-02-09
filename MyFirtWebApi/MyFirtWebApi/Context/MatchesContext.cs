@@ -15,12 +15,12 @@ namespace MyFirtWebApi.Context
         /// <summary>
         /// Matches
         /// </summary>
-        public DbSet<Matche> Matches { get; set; }
+        public DbSet<Matches> Matches { get; set; }
 
         /// <summary>
         /// Demands
         /// </summary>
-        public DbSet<Demand> Demands { get; set; }
+        public DbSet<Demands> Demands { get; set; }
 
         /// <summary>
         /// _connetionString
@@ -54,13 +54,13 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="matche"></param>
         /// <returns></returns>
-        public Matche Create(Matche matche)
+        public Matches Create(Matches matche)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                Demand demand = this.Demands.Where(x => x.Id == matche.DemandsId).First();
+                Demands demand = this.Demands.Where(x => x.Id == matche.DemandsId).First();
 
                 //matche.DemandStatusId = demand.IsConfirmationRequired ? DemandStatus.
 

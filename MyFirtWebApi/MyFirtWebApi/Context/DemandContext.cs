@@ -16,7 +16,7 @@ namespace MyFirtWebApi.Context
         /// <summary>
         /// Demands
         /// </summary>
-        public DbSet<Demand> Demands { get; set; }
+        public DbSet<Demands> Demands { get; set; }
 
         /// <summary>
         /// _connetionString
@@ -50,13 +50,13 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Demand Detail(int id)
+        public Demands Detail(int id)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                Demand result = this.Demands.Where(x => x.Id == id).FirstOrDefault();
+                Demands result = this.Demands.Where(x => x.Id == id).FirstOrDefault();
 
                 this.sqlConnection.Close();
 
@@ -73,17 +73,17 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="demand"></param>
         /// <returns></returns>
-        public Demand Create(Demand demand)
+        public Demands Create(Demands demand)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                EntityEntry<Demand> entity = this.Demands.Add(demand);
+                EntityEntry<Demands> entity = this.Demands.Add(demand);
 
                 this.SaveChanges();
 
-                Demand result = entity.Entity;
+                Demands result = entity.Entity;
 
                 this.sqlConnection.Close();
 
@@ -101,19 +101,19 @@ namespace MyFirtWebApi.Context
         /// <param name="isSeeker"></param>
         /// <param name="isVolonteer"></param>
         /// <returns></returns>
-        public IEnumerable<Demand> GetDemandList(bool isSeeker, bool isVolonteer)
+        public IEnumerable<Demands> GetDemandList(bool isSeeker, bool isVolonteer)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                IEnumerable<Demand> result = Enumerable.Empty<Demand>();
+                IEnumerable<Demands> result = Enumerable.Empty<Demands>();
 
                 if (isSeeker && !isVolonteer)
                 {
                     result = this.Demands.Where(x
                         => x.VolonteerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
-                        => new Demand
+                        => new Demands
                         {
                             DemandType = x.DemandType,
                             Date = x.Date,
@@ -125,7 +125,7 @@ namespace MyFirtWebApi.Context
                 {
                     result = this.Demands.Where(x
                         => x.SeekerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
-                        => new Demand
+                        => new Demands
                         {
                             DemandType = x.DemandType,
                             Date = x.Date,
@@ -137,7 +137,7 @@ namespace MyFirtWebApi.Context
                 {
                     result = this.Demands.Where(x
                         => x.Expiration >= DateTime.Now).Select(x
-                        => new Demand
+                        => new Demands
                         {
                             DemandType = x.DemandType,
                             Date = x.Date,
