@@ -112,7 +112,7 @@ namespace MyFirtWebApi.Context
                 if (isSeeker && !isVolonteer)
                 {
                     result = this.Demands.Where(x
-                        => x.VolonteerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
+                        => x.SeekerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
                         => new Demands
                         {
                             Id = x.Id,
@@ -120,19 +120,21 @@ namespace MyFirtWebApi.Context
                             Date = x.Date,
                             Expiration = x.Expiration,
                             SeekerUser = x.SeekerUser,
-                            VolonteerUser = x.VolonteerUser
+                            SeekerUserId = x.SeekerUserId
                         }).ToList();
                 }
                 else if (isVolonteer && !isSeeker)
                 {
                     result = this.Demands.Where(x
-                        => x.SeekerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
+                        => x.VolonteerUserId.HasValue && x.Expiration >= DateTime.Now).Select(x
                         => new Demands
                         {
+                            Id = x.Id,
+                            Expiration = x.Expiration,
                             DemandType = x.DemandType,
                             Date = x.Date,
-                            SeekerUser = x.SeekerUser,
-                            VolonteerUser = x.VolonteerUser
+                            VolonteerUser = x.VolonteerUser,
+                            VolonteerUserId = x.VolonteerUserId
                         }).ToList();
                 }
                 else if (isVolonteer && isSeeker)
@@ -141,10 +143,14 @@ namespace MyFirtWebApi.Context
                         => x.Expiration >= DateTime.Now).Select(x
                         => new Demands
                         {
+                            Id = x.Id,
                             DemandType = x.DemandType,
                             Date = x.Date,
                             SeekerUser = x.SeekerUser,
-                            VolonteerUser = x.VolonteerUser
+                            VolonteerUser = x.VolonteerUser,
+                            SeekerUserId = x.SeekerUserId,
+                            VolonteerUserId = x.VolonteerUserId,
+                            Expiration = x.Expiration
                         }).ToList();
                 }
 
