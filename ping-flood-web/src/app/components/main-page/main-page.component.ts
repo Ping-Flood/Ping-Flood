@@ -17,4 +17,19 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  getTypeDescription(type: number): string {
+    switch (type) {
+      case 1:
+        return "Bouffe";
+
+      case 2:
+        return "Bras";
+
+      case 3:
+        return "Matériaux";
+
+      default:
+        return "Autre";
+    }
+  }
 }

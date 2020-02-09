@@ -9,19 +9,13 @@
 <div class="container">
   <h2>{{ title }}</h2>
 
-  <ul class="list-group">
-    <li *ngFor="let user of users" class="list-group-item">
-      <h3>
-        {{ user.profile.name }}
-      </h3>
-
-      <p *ngIf="user.profile.address">
-        {{ user.profile.address }}
-      </p>
-
-      <p>
-        Catégorie: {{ user.profile.demand.category }}
-      </p>
-    </li>
-  </ul>
+  <a *ngFor="let user of users" href="main"
+    class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ user.profile.name }}</h5>
+      <small>Il y a 3 heures</small>
+    </div>
+    <p class="mb-1">Catégorie: {{ getTypeDescription(user.profile.demand.category) }}</p>
+    <small *ngIf="user.profile.address">{{ user.profile.address }}</small>
+  </a>
 </div>
