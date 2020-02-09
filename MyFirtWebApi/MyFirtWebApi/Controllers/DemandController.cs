@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MyFirtWebApi.Context;
@@ -34,6 +35,18 @@ namespace MyFirtWebApi.Controllers
         {
             using DemandContext context = new DemandContext();
             return context.Create(demand);
+        }
+
+        /// <summary>
+        /// Create
+        /// </summary>
+        /// <param name="demand"></param>
+        /// <returns></returns>
+        [HttpGet("GetDemandList")]
+        public IEnumerable<Demand> GetDemandList(bool isSeeker, bool isVolonteer)
+        {
+            using DemandContext context = new DemandContext();
+            return context.GetDemandList(isSeeker, isVolonteer);
         }
     }
 }

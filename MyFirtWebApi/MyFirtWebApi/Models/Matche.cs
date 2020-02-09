@@ -3,9 +3,9 @@
 namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// Matches
+    /// Matche
     /// </summary>
-    public class Matches
+    public class Matche
     {
         /// <summary>
         /// Id
@@ -30,7 +30,7 @@ namespace MyFirtWebApi.Models
         /// <summary>
         /// DemandStatusId
         /// </summary>
-        public bool DemandStatusId { get; set; }
+        public int DemandStatusId { get; set; }
 
         /// <summary>
         /// Date
