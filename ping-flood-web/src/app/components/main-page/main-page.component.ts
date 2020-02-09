@@ -4,6 +4,7 @@ import { User, Demand } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faPlus, faWindowClose, faHamburger } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-main-page',
@@ -27,7 +28,7 @@ export class MainPageComponent implements OnInit {
   demandsFiltered:Demand[] = [];
   
 
-  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal) {
+  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal, private cookieService:CookieService) {
 
   }
 
@@ -35,18 +36,22 @@ export class MainPageComponent implements OnInit {
     this.user = history.state;
     if(this.user && (this.user.id == null || this.user.id==undefined)){
       try {
-        this.user = JSON.parse(document.cookie.split(';')[document.cookie.split(';').length-1]) as User;
-        console.log(this.user);
+        this.user = JSON.parse(this.cookieService.get('user_pf')) as User;
         if(this.user.isSeeker){
-          this.typeList = 2;
-        }else{
           this.typeList = 1;
+        }else if (this.user.isVolonteer){
+          this.typeList = 2;
         }
         this.getListDemands();
       } catch (error) {
         this.router.navigateByUrl('login');
       }
     }else{
+      if(this.user.isSeeker){
+        this.typeList = 1;
+      }else if (this.user.isVolonteer){
+        this.typeList = 2;
+      }
       this.getListDemands();
     }
   }
@@ -131,12 +136,19 @@ export class MainPageComponent implements OnInit {
       demand.expiration = new Date(this.expiration);
       demand.date = new Date();
       demand.commentaire = this.comment;
-      if(this.typeList == 1){
+      if(this.user.isSeeker && this.user.isVolonteer){
+        if(this.typeList == 1){
+          demand.volunteerUsersId = this.user.id;
+        }
+        if(this.typeList == 2){
+          demand.seekerUsersId = this.user.id;
+        }
+      }else if(this.user.isSeeker && !this.user.isVolonteer){
+        demand.seekerUsersId = this.user.id;
+      }else if(!this.user.isSeeker && this.user.isVolonteer){
         demand.volunteerUsersId = this.user.id;
       }
-      if(this.typeList == 2){
-        demand.seekerUsersId = this.user.id;
-      }
+      
 
       this.api.createDemand(demand).subscribe(res=>{
         console.log(res);

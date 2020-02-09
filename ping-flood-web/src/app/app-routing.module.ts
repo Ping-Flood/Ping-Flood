@@ -8,7 +8,8 @@ import { DemandDetailComponent } from './components/demand-detail/demand-detail.
 
 
 const routes: Routes = [
-  { path: '',
+  { 
+    path: '',
     redirectTo: '/login',
     pathMatch: 'full'
   },
@@ -23,10 +24,6 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainPageComponent
-  },
-  {
-    path: 'main/:id',
-    component: DetailComponent
   },
   {
     path: 'demand/:id',

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.user = history.state;
-    if(this.user.id == null || this.user.id==undefined){
+    if(this.user && (this.user.id == null || this.user.id==undefined)){
       try {
         this.user = JSON.parse(document.cookie.split(';')[document.cookie.split(';').length-1]) as User;
       } catch (error) {

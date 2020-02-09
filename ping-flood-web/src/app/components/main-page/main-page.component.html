@@ -3,8 +3,8 @@
 <div class="container">
 
   <div class="row">
-    <button class="btn btn-danger col-sm-6 input-font" style="width: 50%;" (click)="changeType(2)" [disabled]="typeList==2">Sinistré(es)</button>
-    <button class="btn btn-success col-sm-6 input-font" style="width: 50%;" (click)="changeType(1)" [disabled]="typeList==1">Volontaire(s)</button>
+    <button *ngIf="typeList==2" class="btn btn-danger col-sm input-font" style="width: 100%;" (click)="changeType(2)" [disabled]="typeList==2">Sinistré(es)</button>
+    <button *ngIf="typeList==1" class="btn btn-success col-sm input-font" style="width: 100%;" (click)="changeType(1)" [disabled]="typeList==1">Volontaire(s)</button>
   </div>
 
   <div class="row">
@@ -20,7 +20,8 @@
     </select>
   </div>
 
-  <a *ngFor="let demand of demandsFiltered" (click)="goToDetail(demand)"
+  <div style="max-height: calc(100vh - 200px);overflow-y: auto;">
+    <a *ngFor="let demand of demandsFiltered" (click)="goToDetail(demand)"
     class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 *ngIf="typeList==1" class="mb-1">{{ demand.volunteerUsers.firstname }} {{demand.volunteerUsers.lastname}}</h5>
@@ -31,6 +32,8 @@
     <small *ngIf="demand.volunteerUsers&&demand.volunteerUsers.address && typeList==1">{{ demand.volunteerUsers.city }}</small>
     <small *ngIf="demand.seekerUsers&&demand.seekerUsers.address && typeList==2">{{ demand.seekerUsers.city }}</small>
   </a>
+  </div>
+
 </div>
 
 <div style="position: fixed;bottom: 15px;right: 15px;">

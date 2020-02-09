@@ -3,18 +3,11 @@
     <div class="container" style="position: absolute;top: 5px;font-size: 30px;background-color: dodgerblue;color: white;" [ngStyle]="{'z-index': isMenuOpen?9999:null}">
         <fa-icon *ngIf="!isMenuOpen" class="clickable" [icon]="faHamburger" (click)="openMenu()"></fa-icon>
         <div *ngIf="isMenuOpen" id="menuHamburger" tabindex="-1">
-    
-            <div class="clickable" (click)="quitMenu()">
-                <label>Item 1</label>
-            </div>
-        
-            <div class="clickable">
-                <label>Item 2</label>
-            </div>
-        
+            
             <div class="clickable">
                 <label><a href="/login" routerLinkActive="active" style="text-decoration: none;color: white;">Déconnexion</a></label>
             </div>
+            
         </div>
     </div>
 

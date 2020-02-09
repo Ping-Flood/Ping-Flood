@@ -14,6 +14,7 @@ import { UiSwitchModule } from 'ngx-ui-switch';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailComponent } from './components/detail/detail.component';
 import { DemandDetailComponent } from './components/demand-detail/demand-detail.component';
+import { CookieService } from 'ngx-cookie-service'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { DemandDetailComponent } from './components/demand-detail/demand-detail.
     FontAwesomeModule,
     UiSwitchModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

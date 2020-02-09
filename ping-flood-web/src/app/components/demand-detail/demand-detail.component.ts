@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { User, Demand, Match } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-demand-detail',
@@ -16,7 +17,7 @@ export class DemandDetailComponent implements OnInit {
   filtreTypeDemande:number=0;
   user:User;
 
-  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal) {
+  constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal, private cookieService:CookieService) {
 
   }
 
@@ -24,7 +25,7 @@ export class DemandDetailComponent implements OnInit {
     this.user = history.state;
     if(this.user.id == null || this.user.id==undefined){
       try {
-        this.user = JSON.parse(document.cookie.split(';')[document.cookie.split(';').length-1]) as User;
+        this.user = JSON.parse(this.cookieService.get('user_pf')) as User;
         this.getDemand();
       } catch (error) {
         this.router.navigateByUrl('login');
