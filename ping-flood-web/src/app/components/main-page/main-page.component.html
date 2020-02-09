@@ -12,7 +12,7 @@
     </div>
 
     <div class="clickable">
-      <label><a href="/login" routerLinkActive="active" style="text-decoration: none;color: white;">Deconnection</a></label>
+      <label><a href="/login" routerLinkActive="active" style="text-decoration: none;color: white;">Déconnexion</a></label>
     </div>
   </div>
 </div>
@@ -32,7 +32,7 @@
   </a> -->
 
   <div class="row">
-    <button class="btn btn-danger col-sm-6 input-font" style="width: 50%;" (click)="changeType(2)" [disabled]="typeList==2">Sinistre(es)</button>
+    <button class="btn btn-danger col-sm-6 input-font" style="width: 50%;" (click)="changeType(2)" [disabled]="typeList==2">Sinistré(es)</button>
     <button class="btn btn-success col-sm-6 input-font" style="width: 50%;" (click)="changeType(1)" [disabled]="typeList==1">Volontaire(s)</button>
   </div>
 
@@ -42,7 +42,7 @@
       <option value="0">Tous</option>
       <option value="1">Bouffe</option>
       <option value="2">Bras</option>
-      <option value="3">Materiaux</option>
+      <option value="3">Matériaux</option>
       <option value="4">Sacs de sable</option>
       <option value="5">Soutien psychologique</option>
       <option value="6">Autre</option>
@@ -79,12 +79,12 @@
   <div class="modal-content">
     <form style="border: none; border-radius: 0px;">
 
-      <label>Type de Demande</label>
+      <label>Type de demande</label>
       <div>
         <select class="input-font" style="width: 100%;" [(ngModel)]="typeDemand" [ngModelOptions]="{standalone: true}">
           <option value="1" selected>Bouffe</option>
           <option value="2">Bras</option>
-          <option value="3">Materiaux</option>
+          <option value="3">Matériaux</option>
           <option value="4">Sacs de sable</option>
           <option value="5">Soutien psychologique</option>
           <option value="6">Autre</option>
@@ -96,7 +96,7 @@
         <input type="text" class="input-font" style="width: 100%;" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}">
       </div>
   
-      <label>Confirmation necessaire</label>
+      <label>Confirmation nécessaire</label>
       <div>
         <ui-switch [(ngModel)]="confirmRequired" [ngModelOptions]="{standalone: true}"></ui-switch>
       </div>
@@ -111,7 +111,7 @@
 
     <div class="center" >
       <!-- <button class="btn btn-default input-font" (click)="confirmCreate(false)">Annuler</button> -->
-      <button class="btn btn-primary input-font" (click)="confirmCreate(true)">Creer</button>
+      <button class="btn btn-primary input-font" (click)="confirmCreate(true)">Créer</button>
     </div>
   </div>
   
@@ -120,7 +120,7 @@
 <ng-template #detailDemand let-modal>
 
   <div class="modal-header">
-    <h3>Detail</h3>
+    <h3>Détail</h3>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true"><fa-icon [icon]="faClose" style="font-size: 30px;"></fa-icon></span>
     </button>

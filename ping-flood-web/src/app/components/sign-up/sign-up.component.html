@@ -7,9 +7,9 @@
 <div class="center margin-center width50">
     <form>
         
-        <label for="">Prenom</label>
+        <label for="">Prénom</label>
         <div>    
-            <input style="width: 100%;" type="text" placeholder="Prenom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" class="input-font">
+            <input style="width: 100%;" type="text" placeholder="Prénom" [(ngModel)]="prenom" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
         
         <label for="">Nom</label>
@@ -27,7 +27,7 @@
             <input style="width: 100%;" type="password" placeholder="Mot de passe" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
-        <label for="">Confirmer Mot de passe</label>
+        <label for="">Confirmer mot de passe</label>
         <div [ngStyle]="stylePassword()">
             <input style="width: 100%;" type="password" placeholder="Mot de passe" [(ngModel)]="passwordConfirm" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
@@ -44,8 +44,8 @@
 
         
         <br>
-        <button class="btn btn-primary input-font" (click)="createUser()" [disabled]="isDisable()">Creer</button>
-        <a href="/login" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Deja un Compte</a>
+        <button class="btn btn-primary input-font" (click)="createUser()" [disabled]="isDisable()">Créer</button>
+        <a href="/login" routerLinkActive="active" class="input-font" style="margin-left: 5px;">Déja un compte</a>
 
     </form>
 </div>
