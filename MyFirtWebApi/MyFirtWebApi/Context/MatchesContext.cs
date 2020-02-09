@@ -60,7 +60,7 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="matche"></param>
         /// <returns></returns>
-        public string Create(Matches matche)
+        public Users Create(Matches matche)
         {
             try
             {
@@ -94,7 +94,24 @@ namespace MyFirtWebApi.Context
 
                 this.sqlConnection.Close();
 
-                return this.Users.Where(x => x.Id == matche.SeekerUsersId).Select(x => x.Phone).FirstOrDefault();
+                return this.Users
+                    .Where(x => x.Id == matche.SeekerUsersId)
+                    .Select(x => new Users
+                    {
+                        Id = x.Id,
+                        Address = x.Address,
+                        City = x.City,
+                        Email = x.Email,
+                        EmailAlert = x.EmailAlert,
+                        Firstname = x.Firstname,
+                        IsSeeker = x.IsSeeker,
+                        IsVolonteer = x.IsVolonteer,
+                        Lastname = x.Lastname,
+                        Password = x.Password,
+                        Phone = x.Phone,
+                        SmsAlert = x.SmsAlert
+                    })
+                    .FirstOrDefault();
             }
             catch (Exception ex)
             {
