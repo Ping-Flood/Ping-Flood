@@ -47,6 +47,13 @@ export class ApiService {
     }));
   }
 
+  getListDemand(seeker:boolean=true, volunteer:boolean=true):Observable<Demand[]>{
+    return this.http.get(`${this.baseUrl}/demand/getdemandlist?isseeker=${seeker}&isvolonteer=${volunteer}`, {headers:this.headers}).pipe(map(res => {
+      return (<any>res) as Demand[];
+    }));
+  }
+
+
   getUser(){
     return this.user;
   }

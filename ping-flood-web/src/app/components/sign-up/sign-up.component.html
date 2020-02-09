@@ -42,10 +42,6 @@
             <input style="width: 100%;" type="text" placeholder="Ville" [(ngModel)]="city" [ngModelOptions]="{standalone: true}" class="input-font">
         </div>
 
-        <label for="">Secteur</label>
-        <div>
-            <input style="width: 100%;" type="text" placeholder="Secteur" [(ngModel)]="secteur" [ngModelOptions]="{standalone: true}" class="input-font">
-        </div>
         
         <br>
         <button class="btn btn-primary input-font" (click)="createUser()" [disabled]="isDisable()">Creer</button>

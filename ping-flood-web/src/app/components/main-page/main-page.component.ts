@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { User, Demand } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faPlus, faWindowClose } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faWindowClose, faHamburger } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,10 +14,22 @@ export class MainPageComponent implements OnInit {
 
   faPlus = faPlus;
   faClose = faWindowClose;
+<<<<<<< HEAD
+=======
+  faHamburger=faHamburger;
+  users = users;
+>>>>>>> get list demands
   isSeekerMainPage = true;
   title = this.isSeekerMainPage ? "Offres" : "Demandes";
   user:User;
   demands:Demand[];
+
+  isMenuOpen=false;
+
+  demands:Demand[] = [];
+  filtreTypeDemade:number=0;
+  demandsFiltered:Demand[] = [];
+
 
   constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal) {
 
@@ -69,8 +81,27 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  goToDetail(demand:Demand){
+  changeFiltre(){
+    if(this.filtreTypeDemade>0)
+      this.demandsFiltered = this.demands.filter(x=>x.demandType.id==this.filtreTypeDemade);
+    else
+      this.demandsFiltered = [...this.demands];
+  }
 
+  demandDetail:Demand;
+  typeList:number=1;
+  changeType(typeList:number){
+    this.typeList = typeList;
+    this.getListDemand();
+  }
+
+  goToDetail(content, demand:Demand){
+    this.demandDetail = demand;
+    this.modalCreateDemand = this.modalService.open(content,{
+      size: 'lg',
+      backdrop: 'static',
+      centered: true
+    })
   }
 
 
@@ -78,15 +109,17 @@ export class MainPageComponent implements OnInit {
   confirmRequired:boolean;
   expiration:string;
   modalCreateDemand:NgbModalRef;
+  comment:string;
   createAlert(content){
     this.modalCreateDemand = this.modalService.open(content,{
-      size: 'sm',
+      size: 'lg',
       backdrop: 'static',
       centered:true
     });
     this.typeDemand = 1;
     this.confirmRequired = false;
-    this.expiration = new Date(new Date().getTime()+24*60*60*1000).toLocaleString();
+    this.comment='';
+    this.expiration = new Date(new Date().getTime()+24*60*60*1000).toLocaleDateString("fr-CA");
   }
 
   confirmCreate(answer:boolean){
@@ -96,6 +129,7 @@ export class MainPageComponent implements OnInit {
       demand.isConfirmationRequired = this.confirmRequired;
       demand.expiration = new Date(this.expiration);
       demand.date = new Date();
+      demand.commentaire = this.comment;
       if(this.typeDemand == 1){
         demand.seekerUserId = this.user.id;
       }
@@ -109,5 +143,16 @@ export class MainPageComponent implements OnInit {
     }
 
     this.modalCreateDemand.close();
+  }
+
+  openMenu(){
+    this.isMenuOpen=true;
+    setTimeout(() => {
+      document.getElementById('menuHamburger').focus();
+    }, 0);
+  }
+
+  quitMenu(){
+    this.isMenuOpen=false;
   }
 }

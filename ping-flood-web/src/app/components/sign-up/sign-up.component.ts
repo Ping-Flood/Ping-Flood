@@ -18,6 +18,11 @@ export class SignUpComponent implements OnInit {
   address:string;
   city:string;
   secteur:any;
+  isSeeker:boolean;
+  isVolunteer:boolean;
+  emailAlert:boolean;
+  smsAlert:boolean;
+  phone:number;
 
   constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router) { }
 
@@ -33,7 +38,12 @@ export class SignUpComponent implements OnInit {
       user.password = this.passwordConfirm;
       user.address = this.address;
       user.city = this.city;
-      user.sectorTypeId = (this.secteur)?this.secteur.Id:null;
+      // user.sectorTypeId = (this.secteur)?this.secteur.Id:null;
+      user.isSeeker = this.isSeeker;
+      user.isVolunteer = this.isVolunteer;
+      user.emailAlert = this.emailAlert;
+      user.smsAlert = this.smsAlert;
+      user.phone = this.phone;
 
       this.api.signup(user).subscribe(res=>{
         document.cookie = JSON.stringify(res);

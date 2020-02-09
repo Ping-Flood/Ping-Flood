@@ -27,13 +27,21 @@ export class Match{
 export class Demand{
     id:number;
     demandTypeId:number;
+    demandType:DemandType;
+    seekerUser:User;
     seekerUserId?:number;
+    volonteerUser:User;
     volunteerUserId?:number;
     isConfirmationRequired:boolean;
-    expiration:Date;
-    date:Date;
     match?:Match;
     seeker?:User;
     volunteer?:User;
+    expiration:Date|string;
+    date:Date|string;
+    commentaire:string;
 }
 
+export class DemandType{
+    id:number;
+    description:string;
+}
