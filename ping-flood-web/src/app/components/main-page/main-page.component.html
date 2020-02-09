@@ -1,1 +1,27 @@
-<p>Main page works!</p>
+<head>
+  <title>{{ title }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div class="container">
+  <h2>{{ title }}</h2>
+
+  <ul class="list-group">
+    <li *ngFor="let user of users" class="list-group-item">
+      <h3>
+        {{ user.profile.name }}
+      </h3>
+
+      <p *ngIf="user.profile.address">
+        {{ user.profile.address }}
+      </p>
+
+      <p>
+        Catégorie: {{ user.profile.demand.category }}
+      </p>
+    </li>
+  </ul>
+</div>

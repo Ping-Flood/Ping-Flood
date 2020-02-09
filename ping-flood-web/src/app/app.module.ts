@@ -9,7 +9,6 @@ import { LoginComponent } from './components/login/login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
