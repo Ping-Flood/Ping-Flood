@@ -3,9 +3,9 @@
 namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// Matche
+    /// Matches
     /// </summary>
-    public class Matche
+    public class Matches
     {
         /// <summary>
         /// Id
@@ -18,14 +18,19 @@ namespace MyFirtWebApi.Models
         public int DemandsId { get; set; }
 
         /// <summary>
+        /// Demands
+        /// </summary>
+        public Demands Demands { get; set; }
+
+        /// <summary>
         /// SeekerUsersId
         /// </summary>
         public int SeekerUsersId { get; set; }
 
         /// <summary>
-        /// VolonteerUsersId
+        /// VolunteerUsersId
         /// </summary>
-        public int VolonteerUsersId { get; set; }
+        public int VolunteerUsersId { get; set; }
 
         /// <summary>
         /// DemandStatusId

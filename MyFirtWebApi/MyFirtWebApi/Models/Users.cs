@@ -1,9 +1,9 @@
 ﻿namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// User
+    /// Users
     /// </summary>
-    public class User
+    public class Users
     {
         /// <summary>
         /// Id
@@ -39,5 +39,30 @@
         /// City
         /// </summary>
         public string City { get; set; }
+
+        /// <summary>
+        /// Phone
+        /// </summary>
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// IsSeeker
+        /// </summary>
+        public bool IsSeeker { get; set; }
+
+        /// <summary>
+        /// IsVolonteer
+        /// </summary>
+        public bool IsVolonteer { get; set; }
+
+        /// <summary>
+        /// EmailAlert
+        /// </summary>
+        public bool EmailAlert { get; set; }
+
+        /// <summary>
+        /// SmsAlert
+        /// </summary>
+        public bool SmsAlert { get; set; }
     }
 }

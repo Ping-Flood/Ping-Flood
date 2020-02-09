@@ -1,18 +1,28 @@
 ﻿namespace MyFirtWebApi.Models
 {
     /// <summary>
-    /// DemandTypes
+    /// DemandStatus
     /// </summary>
-    public class DemandTypes
+    public enum DemandStatus
     {
         /// <summary>
-        /// Id
+        /// WaitingSecure
         /// </summary>
-        public int Id { get; set; }
+        WaitingSecure = 1,
 
         /// <summary>
-        /// Description
+        /// WaitingVolunteer
         /// </summary>
-        public string Description { get; set; }
+        WaitingVolunteer = 2,
+
+        /// <summary>
+        /// Approved
+        /// </summary>
+        Approved = 3,
+
+        /// <summary>
+        /// Reject
+        /// </summary>
+        Reject = 4
     }
 }

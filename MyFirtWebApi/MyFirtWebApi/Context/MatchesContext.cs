@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using MyFirtWebApi.Helpers;
 using MyFirtWebApi.Models;
 
 namespace MyFirtWebApi.Context
@@ -14,7 +16,17 @@ namespace MyFirtWebApi.Context
         /// <summary>
         /// Matches
         /// </summary>
-        public DbSet<Matche> Matches { get; set; }
+        public DbSet<Matches> Matches { get; set; }
+
+        /// <summary>
+        /// Users
+        /// </summary>
+        public DbSet<Users> Users { get; set; }
+
+        /// <summary>
+        /// Demands
+        /// </summary>
+        public DbSet<Demands> Demands { get; set; }
 
         /// <summary>
         /// _connetionString
@@ -43,32 +55,65 @@ namespace MyFirtWebApi.Context
             optionsBuilder.UseSqlServer(_connetionString);
         }
 
-
         /// <summary>
         /// Create
         /// </summary>
         /// <param name="matche"></param>
         /// <returns></returns>
-        public Matche Create(Matche matche)
+        public string Create(Matches matche)
         {
             try
             {
                 this.sqlConnection.Open();
 
-                EntityEntry<Matche> entity = this.Matches.Add(matche);
+                Demands demand = this.Demands.Where(x => x.Id == matche.DemandsId).First();
+
+                demand.IsConfirmationRequired = false;
+
+                if (demand.IsConfirmationRequired)
+                {
+                    matche.DemandStatusId = (int)DemandStatus.WaitingSecure;
+                    HandleSecureDemand(demand);
+                }
+                else
+                {
+                    matche.DemandStatusId = (int)DemandStatus.Approved;
+                    matche.Demands = demand;
+                }
+
+                if (matche.Date == default)
+                {
+                    matche.Date = DateTime.Now;
+                }
+
+                EntityEntry<Matches> entity = this.Matches.Add(matche);
 
                 this.SaveChanges();
 
-                Matche result = entity.Entity;
+                Matches result = entity.Entity;
 
                 this.sqlConnection.Close();
 
-                return result;
+                return this.Users.Where(x => x.Id == matche.SeekerUsersId).Select(x => x.Phone).FirstOrDefault();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
+        }
+
+        /// <summary>
+        /// HandleSecureDemand
+        /// </summary>
+        /// <param name="demand"></param>
+        private static void HandleSecureDemand(Demands demand)
+        {
+            string message = $"User.FirstName & User.LastName Catégorie: Demand.DemandType User." +
+                $"Ville Voici le lien afin de confirmer votre participation LINK Merci de participer au soutien collectif via Ping-Flood";
+
+            string phoneNumber = demand.SeekerUsers.Phone;
+
+            SMSHelper.SendSMS(phoneNumber, $"+1{message}");
         }
     }
 }
