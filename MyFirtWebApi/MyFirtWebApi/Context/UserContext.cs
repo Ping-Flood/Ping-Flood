@@ -99,11 +99,9 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool Authenticate(User user)
+        public User Authenticate(User user)
         {
-            bool exist = this.Users.Where(x => x.Email == user.Email && x.Password == user.Password).Any();
-
-            return exist;
+            return this.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
         }
     }
 }
