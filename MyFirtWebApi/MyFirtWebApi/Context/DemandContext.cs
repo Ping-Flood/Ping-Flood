@@ -62,10 +62,10 @@ namespace MyFirtWebApi.Context
                     DemandType = x.DemandType,
                     Date = x.Date,
                     Expiration = x.Expiration,
-                    SeekerUser = x.SeekerUser,
+                    SeekerUsers = x.SeekerUsers,
                     SeekerUsersId = x.SeekerUsersId,
                     VolunteerUsersId = x.VolunteerUsersId,
-                    VolonteerUser = x.VolonteerUser,
+                    VolunteerUsers = x.VolunteerUsers,
                     Description = x.Description,
                     DemandTypeId = x.DemandTypeId
                 }).FirstOrDefault();
@@ -131,7 +131,7 @@ namespace MyFirtWebApi.Context
                             DemandType = x.DemandType,
                             Date = x.Date,
                             Expiration = x.Expiration,
-                            SeekerUser = x.SeekerUser,
+                            SeekerUsers = x.SeekerUsers,
                             SeekerUsersId = x.SeekerUsersId
                         }).ToList();
                 }
@@ -145,7 +145,7 @@ namespace MyFirtWebApi.Context
                             Expiration = x.Expiration,
                             DemandType = x.DemandType,
                             Date = x.Date,
-                            VolonteerUser = x.VolonteerUser,
+                            VolunteerUsers = x.VolunteerUsers,
                             VolunteerUsersId = x.VolunteerUsersId
                         }).ToList();
                 }
@@ -158,8 +158,8 @@ namespace MyFirtWebApi.Context
                             Id = x.Id,
                             DemandType = x.DemandType,
                             Date = x.Date,
-                            SeekerUser = x.SeekerUser,
-                            VolonteerUser = x.VolonteerUser,
+                            SeekerUsers = x.SeekerUsers,
+                            VolunteerUsers = x.VolunteerUsers,
                             SeekerUsersId = x.SeekerUsersId,
                             VolunteerUsersId = x.VolunteerUsersId,
                             Expiration = x.Expiration
@@ -170,7 +170,7 @@ namespace MyFirtWebApi.Context
 
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }

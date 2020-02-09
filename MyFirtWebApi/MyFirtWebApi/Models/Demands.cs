@@ -30,7 +30,7 @@ namespace MyFirtWebApi.Models
         /// <summary>
         /// SeekerUser
         /// </summary>
-        public Users SeekerUser { get; set; }
+        public Users SeekerUsers { get; set; }
 
         /// <summary>
         /// VolunteerUsersId
@@ -40,7 +40,7 @@ namespace MyFirtWebApi.Models
         /// <summary>
         /// VolonteerUser
         /// </summary>
-        public Users VolonteerUser { get; set; }
+        public Users VolunteerUsers { get; set; }
 
         /// <summary>
         /// IsConfirmationRequired

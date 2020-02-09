@@ -19,6 +19,11 @@ namespace MyFirtWebApi.Context
         public DbSet<Matches> Matches { get; set; }
 
         /// <summary>
+        /// Users
+        /// </summary>
+        public DbSet<Users> Users { get; set; }
+
+        /// <summary>
         /// Demands
         /// </summary>
         public DbSet<Demands> Demands { get; set; }
@@ -55,7 +60,7 @@ namespace MyFirtWebApi.Context
         /// </summary>
         /// <param name="matche"></param>
         /// <returns></returns>
-        public Matches Create(Matches matche)
+        public string Create(Matches matche)
         {
             try
             {
@@ -76,6 +81,11 @@ namespace MyFirtWebApi.Context
                     matche.Demands = demand;
                 }
 
+                if (matche.Date == default)
+                {
+                    matche.Date = DateTime.Now;
+                }
+
                 EntityEntry<Matches> entity = this.Matches.Add(matche);
 
                 this.SaveChanges();
@@ -84,9 +94,9 @@ namespace MyFirtWebApi.Context
 
                 this.sqlConnection.Close();
 
-                return result;
+                return this.Users.Where(x => x.Id == matche.SeekerUsersId).Select(x => x.Phone).FirstOrDefault();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
@@ -101,7 +111,7 @@ namespace MyFirtWebApi.Context
             string message = $"User.FirstName & User.LastName Catégorie: Demand.DemandType User." +
                 $"Ville Voici le lien afin de confirmer votre participation LINK Merci de participer au soutien collectif via Ping-Flood";
 
-            string phoneNumber = demand.SeekerUser.Phone;
+            string phoneNumber = demand.SeekerUsers.Phone;
 
             SMSHelper.SendSMS(phoneNumber, $"+1{message}");
         }
