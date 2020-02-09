@@ -1,11 +1,3 @@
-<!-- <head>
-  <title>{{ title }}</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</head> -->
-
 <div class="container">
   <h2>{{ title }}</h2>
 
@@ -21,5 +13,46 @@
 </div>
 
 <div style="position: absolute;bottom: 15px;right: 15px;">
-  <button class="btn btn-primary btn-circle btn-xl" (click)="createAlert()"> <fa-icon [icon]="faPlus" style="font-size: 30px;"></fa-icon> </button>
+  <button class="btn btn-primary btn-circle btn-xl" (click)="createAlert(createDemand)"> <fa-icon [icon]="faPlus" style="font-size: 30px;"></fa-icon> </button>
 </div>
+
+
+<ng-template #createDemand let-modal>
+
+  <div class="modal-header">
+    <h3>Ajouter une demande</h3>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true"><fa-icon [icon]="faClose" style="font-size: 30px;"></fa-icon></span>
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <form>
+
+      <label>Type de Demande</label>
+      <div>
+        <select class="input-font" [(ngModel)]="typeDemand" [ngModelOptions]="{standalone: true}">
+          <option value="1" selected>Offre</option>
+          <option value="2">Demande</option>
+        </select>
+      </div>
+  
+      <label>Confirmation necessaire</label>
+      <div>
+        <ui-switch [(ngModel)]="confirmRequired" [ngModelOptions]="{standalone: true}"></ui-switch>
+      </div>
+  
+      <label>Expiration</label>
+      <div>
+        <input type="datetime-locale" class="input-font" [(ngModel)]="expiration" [ngModelOptions]="{standalone: true}">
+      </div>
+  
+    </form>
+
+    <div class="center" >
+      <!-- <button class="btn btn-default input-font" (click)="confirmCreate(false)">Annuler</button> -->
+      <button class="btn btn-primary input-font" (click)="confirmCreate(true)">Creer</button>
+    </div>
+  </div>
+  
+</ng-template>

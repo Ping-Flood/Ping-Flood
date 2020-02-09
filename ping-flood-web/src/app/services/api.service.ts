@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from '../models/db-class';
+import { User, Demand } from '../models/db-class';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -37,6 +37,13 @@ export class ApiService {
   getListUser():Observable<User[]>{
     return this.http.get(`${this.baseUrl}/users`, {headers:this.headers}).pipe(map(res => {
       return (<any>res) as User[];
+    }));
+  }
+
+  createDemand(demand:Demand):Observable<any>{
+    return this.http.post(`${this.baseUrl}/demand/create`, demand, {headers:this.headers}).pipe(map(res => {
+      this.user = res as User;
+      return (<any>res) as User;
     }));
   }
 
