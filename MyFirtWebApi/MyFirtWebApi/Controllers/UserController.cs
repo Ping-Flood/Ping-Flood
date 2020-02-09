@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 using MyFirtWebApi.Context;
 using MyFirtWebApi.Models;
@@ -65,10 +66,12 @@ namespace MyFirtWebApi.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("Create")]
         public User Create(User user)
         {
             SqlConnection cnn = new SqlConnection(_connectionString);
+
+            User result;
 
             try
             {
@@ -76,14 +79,14 @@ namespace MyFirtWebApi.Controllers
 
                 using (UserContext context = new UserContext())
                 {
-                    Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<User> u = context.Users.Add(user);
-                    //u.
-                    //var result = this.Get(u)
+                    EntityEntry<User> entity = context.Users.Add(user);
+
+                    result = entity.Entity;
                 }
 
                 cnn.Close();
 
-                return null;
+                return result;
             }
             catch (Exception ex)
             {
