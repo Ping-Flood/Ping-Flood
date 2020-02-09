@@ -40,7 +40,7 @@ export class SignUpComponent implements OnInit {
       user.city = this.city;
       // user.sectorTypeId = (this.secteur)?this.secteur.Id:null;
       user.isSeeker = this.isSeeker;
-      user.isVolunteer = this.isVolunteer;
+      user.isVolonteer = this.isVolunteer;
       user.emailAlert = this.emailAlert;
       user.smsAlert = this.smsAlert;
       user.phone = this.phone;

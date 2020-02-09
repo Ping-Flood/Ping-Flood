@@ -36,6 +36,12 @@ export class MainPageComponent implements OnInit {
     if(this.user.id == null || this.user.id==undefined){
       try {
         this.user = JSON.parse(document.cookie.split(';')[document.cookie.split(';').length-1]) as User;
+        console.log(this.user);
+        if(this.user.isSeeker){
+          this.typeList = 2;
+        }else{
+          this.typeList = 1;
+        }
         this.getListDemands();
       } catch (error) {
         this.router.navigateByUrl('login');
@@ -92,7 +98,7 @@ export class MainPageComponent implements OnInit {
     this.getListDemands();
   }
 
-  goToDetail(content, demand:Demand){
+  goToDetail(demand:Demand){
     this.demandDetail = demand;
     this.router.navigateByUrl('demand/'+demand.id, { state: demand })
   }
@@ -124,11 +130,11 @@ export class MainPageComponent implements OnInit {
       demand.expiration = new Date(this.expiration);
       demand.date = new Date();
       demand.commentaire = this.comment;
-      if(this.typeDemand == 1){
-        demand.seekerUserId = this.user.id;
-      }
-      if(this.typeDemand == 2){
+      if(this.typeList == 1){
         demand.volunteerUserId = this.user.id;
+      }
+      if(this.typeList == 2){
+        demand.seekerUserId = this.user.id;
       }
 
       this.api.createDemand(demand).subscribe(res=>{
@@ -139,14 +145,5 @@ export class MainPageComponent implements OnInit {
     this.modalCreateDemand.close();
   }
 
-  openMenu(){
-    this.isMenuOpen=true;
-    setTimeout(() => {
-      document.getElementById('menuHamburger').focus();
-    }, 0);
-  }
 
-  quitMenu(){
-    this.isMenuOpen=false;
-  }
 }

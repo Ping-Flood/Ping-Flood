@@ -1,35 +1,6 @@
 
-<div class="container" style="position: absolute;top: 5px;font-size: 30px;background-color: dodgerblue;color: white;" [ngStyle]="{'z-index': isMenuOpen?9999:null}">
-  <fa-icon *ngIf="!isMenuOpen" class="clickable" [icon]="faHamburger" (click)="openMenu()"></fa-icon>
-  <div *ngIf="isMenuOpen" id="menuHamburger" tabindex="-1" (blur)="quitMenu()">
-
-    <div class="clickable">
-      <label>Item 1</label>
-    </div>
-
-    <div class="clickable">
-      <label>Item 2</label>
-    </div>
-
-    <div class="clickable">
-      <label><a href="/login" routerLinkActive="active" style="text-decoration: none;color: white;">Déconnexion</a></label>
-    </div>
-  </div>
-</div>
 
 <div class="container">
-  <!-- <h2>{{ title }}</h2> -->
-
-
-  <!-- <a *ngFor="let demand of demands" (click)="goToDetail(demand)"
-    class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ getUserName(demand) }}</h5>
-      <small>{{ demand.date | date:'medium' }}</small>
-    </div>
-    <p class="mb-1">Catégorie: {{ getTypeDescription(demand.category) }}</p>
-    <small *ngIf="demand.seeker">{{ demand.seeker.address }}</small>
-  </a> -->
 
   <div class="row">
     <button class="btn btn-danger col-sm-6 input-font" style="width: 50%;" (click)="changeType(2)" [disabled]="typeList==2">Sinistré(es)</button>
@@ -49,7 +20,7 @@
     </select>
   </div>
 
-  <a *ngFor="let demand of demandsFiltered" (click)="goToDetail(detailDemand, demand)"
+  <a *ngFor="let demand of demandsFiltered" (click)="goToDetail(demand)"
     class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
       <h5 *ngIf="typeList==1" class="mb-1">{{ demand.volonteerUser.firstname }} {{demand.volonteerUser.lastname}}</h5>
@@ -62,7 +33,7 @@
   </a>
 </div>
 
-<div style="position: absolute;bottom: 15px;right: 15px;">
+<div style="position: fixed;bottom: 15px;right: 15px;">
   <button class="btn btn-primary btn-circle btn-xl" (click)="createAlert(createDemand)"> <fa-icon [icon]="faPlus" style="font-size: 30px;"></fa-icon> </button>
 </div>
 
@@ -116,7 +87,7 @@
   </div>
   
 </ng-template>
-
+<!-- 
 <ng-template #detailDemand let-modal>
 
   <div class="modal-header">
@@ -134,9 +105,9 @@
     </form>
 
     <div class="center" >
-      <!-- <button class="btn btn-default input-font" (click)="confirmCreate(false)">Annuler</button> -->
+      <button class="btn btn-default input-font" (click)="confirmCreate(false)">Annuler</button>
       <button class="btn btn-primary input-font" (click)="confirmCreate(true)">Aider</button>
     </div>
   </div>
   
-</ng-template>
+</ng-template> -->

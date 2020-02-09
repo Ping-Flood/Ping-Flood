@@ -9,7 +9,7 @@ export class User {
     sectorTypeId:number;
     matches?:Match[];
     isSeeker:boolean;
-    isVolunteer:boolean;
+    isVolonteer:boolean;
     emailAlert:boolean;
     smsAlert:boolean;
     phone:number;
