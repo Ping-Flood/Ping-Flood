@@ -13,19 +13,14 @@ namespace MyFirtWebApi.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// DemandeTypeId
-        /// </summary>
-        public int DemandeTypeId { get; set; }
-
-        /// <summary>
         /// SeekerUserId
         /// </summary>
-        public int SeekerUserId { get; set; }
+        public int? SeekerUserId { get; set; }
 
         /// <summary>
         /// VolonteerUserId
         /// </summary>
-        public int VolonteerUserId { get; set; }
+        public int? VolonteerUserId { get; set; }
 
         /// <summary>
         /// ConfirmationRequired

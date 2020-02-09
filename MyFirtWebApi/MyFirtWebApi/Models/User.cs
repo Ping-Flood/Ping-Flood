@@ -39,10 +39,5 @@
         /// City
         /// </summary>
         public string City { get; set; }
-
-        /// <summary>
-        /// SectorTypeId
-        /// </summary>
-        public int SectorTypeId { get; set; }
     }
 }

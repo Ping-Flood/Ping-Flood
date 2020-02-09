@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -83,6 +84,45 @@ namespace MyFirtWebApi.Context
                 this.SaveChanges();
 
                 Demand result = entity.Entity;
+
+                this.sqlConnection.Close();
+
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// GetDemandList
+        /// </summary>
+        /// <param name="isSeeker"></param>
+        /// <param name="isVolonteer"></param>
+        /// <returns></returns>
+        public IEnumerable<Demand> GetDemandList(bool isSeeker, bool isVolonteer)
+        {
+            try
+            {
+                this.sqlConnection.Open();
+
+                IEnumerable<Demand> result = Enumerable.Empty<Demand>();
+
+                if (isSeeker && !isVolonteer)
+                {
+                    result = this.Demands.Where(x => x.VolonteerUserId.HasValue &&
+                                                x.Expiration >= DateTime.Now).ToList();
+                }
+                else if (isVolonteer && !isSeeker)
+                {
+                    result = this.Demands.Where(x => x.SeekerUserId.HasValue &&
+                                                x.Expiration >= DateTime.Now).ToList();
+                }
+                else if (isVolonteer && isSeeker)
+                {
+                    result = this.Demands.Where(x => x.Expiration >= DateTime.Now).ToList();
+                }
 
                 this.sqlConnection.Close();
 
