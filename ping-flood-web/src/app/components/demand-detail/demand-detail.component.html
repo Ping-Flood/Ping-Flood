@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 style="position: absolute; top: 0; left:33%;color:white;">Assister</h1>
+  <h1 style="position: absolute; top: 0; left:33%;color:white;">Assister <span (click)="return()" class="clickable"><fa-icon [icon]="faClose"></fa-icon></span></h1>
 
   <div *ngIf="demand.seekerUsersId>0">
     <label for="">{{ demand.seekerUsers.firstname }} {{ demand.seekerUsers.lastname }}</label>
@@ -34,7 +34,7 @@
 
   <br>
   <div class="row center">
-    <button class="btn btn-primary input-font center" style="margin:auto;" (click)="aider(modalTelephone)">Aider</button>
+    <button class="btn btn-primary input-font center" style="margin:auto;" (click)="ouvrirDialog(modalDialog)">Aider</button>
   </div>
 
 </div>
@@ -51,5 +51,17 @@
     <br>
     Courriel
     <a href="mailto:{{userDisplay.email}}">{{userDisplay.email}}</a>
+  </div>
+</ng-template>
+
+
+<ng-template #modalDialog let-modal>
+  <div class="modal-header">
+    <label for="">Obtenir Contact</label>
+    
+  </div>
+  <div class="modal-content font-input">
+    <button class="btn btn-light input-font" (click)="modal.dismiss('NON')">Non</button>
+    <button class="btn btn-primary input-font"  (click)="aider(modalTelephone)">Oui</button>
   </div>
 </ng-template>

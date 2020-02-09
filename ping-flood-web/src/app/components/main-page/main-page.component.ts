@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnDestroy } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { User, Demand } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./main-page.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnDestroy {
 
   faPlus = faPlus;
   faClose = faWindowClose;
@@ -29,14 +29,13 @@ export class MainPageComponent implements OnInit {
   
 
   constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal, private cookieService:CookieService) {
-
   }
-
+  private interval;
   ngOnInit() {
     this.user = history.state;
     if(this.user && (this.user.id == null || this.user.id==undefined)){
       try {
-        this.user = JSON.parse(this.cookieService.get('user_pf')) as User;
+        this.user = JSON.parse(this.cookieService.get('user_pf'));
         if(this.user.isSeeker){
           this.typeList = 1;
         }else if (this.user.isVolonteer){
@@ -56,11 +55,24 @@ export class MainPageComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(){
+    if(!!this.interval){
+      clearInterval(this.interval);
+    }
+  }
+
   getListDemands(){
-    this.api.getListDemands(this.typeList==2, this.typeList==1).subscribe(res=>{
-      this.demands = res as any;
-      this.changeFiltre();
-    })
+    if(!!this.interval){
+      clearInterval(this.interval);
+    }
+
+    this.interval = setInterval(()=>{
+      this.api.getListDemands(this.typeList==2, this.typeList==1).subscribe(res=>{
+        this.demands = res as any;
+        this.changeFiltre();
+      })
+    },1000);
+    
   }
 
   getUserName(demand: Demand): string{
@@ -132,7 +144,7 @@ export class MainPageComponent implements OnInit {
     if(answer){
       let demand = new Demand();
       demand.demandTypeId = this.typeDemand;
-      demand.isConfirmationRequired = this.confirmRequired;
+      demand.isConfirmationRequired = !!this.confirmRequired;
       demand.expiration = new Date(this.expiration);
       demand.date = new Date();
       demand.commentaire = this.comment;

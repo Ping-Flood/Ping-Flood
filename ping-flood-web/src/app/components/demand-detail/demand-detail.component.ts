@@ -4,6 +4,7 @@ import { User, Demand, Match } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie-service';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-demand-detail',
@@ -12,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
   encapsulation: ViewEncapsulation.None
 })
 export class DemandDetailComponent implements OnInit {
-
+  faClose=faWindowClose;
   demand:Demand=new Demand();
   filtreTypeDemande:number=0;
   user:User;
@@ -46,8 +47,19 @@ export class DemandDetailComponent implements OnInit {
     });
   }
 
+  dialog:NgbModalRef;
+  ouvrirDialog(content){
+    this.dialog = this.modalService.open(content,{
+      size:'sm',
+      centered:true,
+      backdrop: 'static'
+    })
+  }
+
   userDisplay:User;
   aider(content){
+    this.dialog.close();
+
     let match:Match = new Match();
     match.demandsId = this.demand.id;
     if(this.demand.seekerUsersId>0){
@@ -72,5 +84,9 @@ export class DemandDetailComponent implements OnInit {
         backdrop:true
       });
     })
+  }
+
+  return(){
+    this.router.navigateByUrl('main', {state:this.user});
   }
 }
