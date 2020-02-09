@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { users } from '../../dummy-data/users';
 import { ApiService } from 'src/app/services/api.service';
 import { User, Demand } from 'src/app/models/db-class';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,10 +14,10 @@ export class MainPageComponent implements OnInit {
 
   faPlus = faPlus;
   faClose = faWindowClose;
-  users = users;
   isSeekerMainPage = true;
   title = this.isSeekerMainPage ? "Offres" : "Demandes";
   user:User;
+  demands:Demand[];
 
   constructor(private api:ApiService, private activatedroute:ActivatedRoute, private router:Router, private modalService: NgbModal) {
 
@@ -29,19 +28,29 @@ export class MainPageComponent implements OnInit {
     if(this.user.id == null || this.user.id==undefined){
       try {
         this.user = JSON.parse(document.cookie.split(';')[document.cookie.split(';').length-1]) as User;
-        this.getListUser();
+        this.getListDemands();
       } catch (error) {
         this.router.navigateByUrl('login')
       }
     }else{
-      this.getListUser();
+      this.getListDemands();
     }
   }
 
-  getListUser(){
-    this.api.getListUser().subscribe(res=>{
-      this.users = res as any;
+  getListDemands(){
+    this.api.getListDemands(this.user.isSeeker, this.user.isVolunteer).subscribe(res=>{
+      this.demands = res as any;
     })
+  }
+
+  getUserName(demand: Demand): string{
+    let demandUser = demand.seeker != null ? demand.seeker : demand.volunteer;
+    return  demandUser.firstname + " " + demandUser.lastname;
+  }
+
+  getDate(demand): string{
+    demand.date
+    return "";
   }
 
   getTypeDescription(type: number): string {
@@ -60,7 +69,7 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  goToDetail(user:User){
+  goToDetail(demand:Demand){
 
   }
 

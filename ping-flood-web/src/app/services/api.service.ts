@@ -50,4 +50,11 @@ export class ApiService {
   getUser(){
     return this.user;
   }
+
+  getListDemands(isSeeker: boolean, isVolunteer: boolean):Observable<Demand[]>{
+    return this.http.get(`${this.baseUrl}/demand/GetDemandList?isSeeker=${isSeeker}&isVolonteer=${isVolunteer}`, {headers:this.headers}).pipe(map(res => {
+      return (<any>res) as Demand[];
+    }));
+  }
+
 }

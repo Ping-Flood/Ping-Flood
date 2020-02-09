@@ -1,14 +1,14 @@
 <div class="container">
   <h2>{{ title }}</h2>
 
-  <a *ngFor="let user of users" (click)="goToDetail(user)"
+  <a *ngFor="let demand of demands" (click)="goToDetail(demand)"
     class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ user.profile.name }}</h5>
-      <small>Il y a 3 heures</small>
+      <h5 class="mb-1">{{ getUserName(demand) }}</h5>
+      <small>{{ demand.date | date:'medium' }}</small>
     </div>
-    <p class="mb-1">Catégorie: {{ getTypeDescription(user.profile.demand.category) }}</p>
-    <small *ngIf="user.profile.address">{{ user.profile.address }}</small>
+    <p class="mb-1">Catégorie: {{ getTypeDescription(demand.category) }}</p>
+    <small *ngIf="demand.seeker">{{ demand.seeker.address }}</small>
   </a>
 </div>
 
