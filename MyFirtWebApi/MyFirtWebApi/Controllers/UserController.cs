@@ -34,8 +34,8 @@ namespace MyFirtWebApi.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [HttpGet]
-        public IEnumerable<User> Get(int userId)
+        [HttpGet("Get")]
+        public User Get(int userId)
         {
             try
             {
@@ -43,17 +43,16 @@ namespace MyFirtWebApi.Controllers
 
                 cnn.Open();
 
-                List<User> users;
+                User user;
 
                 using (UserContext context = new UserContext())
                 {
-                    users = context.Users
-                       .ToList();
+                    user = context.Users.Where(x => x.Id == userId).FirstOrDefault();
                 }
 
                 cnn.Close();
 
-                return users;
+                return user;
             }
             catch (Exception ex)
             {
